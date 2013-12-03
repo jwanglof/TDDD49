@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Poker.Card"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="70" d:DesignWidth="50">
+    <Grid>
+        <Canvas>
+            <Rectangle x:Name="content" Fill="White" Stroke="Black" Height="70" Width="50"></Rectangle>
+            <Label x:Name="lblNumber" Content="0" Canvas.Left="0"></Label>
+            <Label x:Name="lblSuit" Content="0" Canvas.Right="0"></Label>
+        </Canvas>
+    </Grid>
+</UserControl>

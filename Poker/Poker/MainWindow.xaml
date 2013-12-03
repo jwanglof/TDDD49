@@ -1,0 +1,21 @@
+﻿<Window x:Class="Poker.MainWindow"
+        x:Name="mainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:Poker"
+        Title="Poker" Height="350" Width="525"
+        Background="Green">
+    <Grid>
+        <Canvas x:Name="mainCanvas">
+            <Grid x:Name="startGrid">
+</Grid>
+            
+            <Grid x:Name="gridPlayer1" Canvas.Left="100">
+                <local:Player x:Name="player1"></local:Player>
+            </Grid>
+            <Grid x:Name="gridPlayer2" Canvas.Left="100" Canvas.Bottom="0">
+                <local:Player x:Name="player2"></local:Player>
+            </Grid>
+        </Canvas>
+    </Grid>
+</Window>
