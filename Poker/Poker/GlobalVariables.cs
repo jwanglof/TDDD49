@@ -10,6 +10,8 @@ namespace Poker
     {
         public static Dictionary<int, String> cardNumbers = new Dictionary<int,string>();
         public static Dictionary<int, String> suitNumbers = new Dictionary<int, string>();
+        public static Dictionary<String, String> realCards = new Dictionary<string, string>();
+
         //public static int numberOfPlayers = 2;
         public static Player player1;
         public static Player player2;
@@ -46,6 +48,11 @@ namespace Poker
             suitNumbers[2] = "Clubs";
             suitNumbers[3] = "Diamonds";
             suitNumbers[4] = "Hearts";
+        }
+
+        private static void initRealCards()
+        {
+            
         }
 
         public static String toCardValue(int number)
