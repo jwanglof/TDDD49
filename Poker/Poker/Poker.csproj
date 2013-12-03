@@ -117,6 +117,60 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="DeckOfCards\c1.png" />
+    <Resource Include="DeckOfCards\c10.png" />
+    <Resource Include="DeckOfCards\c2.png" />
+    <Resource Include="DeckOfCards\c3.png" />
+    <Resource Include="DeckOfCards\c4.png" />
+    <Resource Include="DeckOfCards\c5.png" />
+    <Resource Include="DeckOfCards\c6.png" />
+    <Resource Include="DeckOfCards\c7.png" />
+    <Resource Include="DeckOfCards\c8.png" />
+    <Resource Include="DeckOfCards\c9.png" />
+    <Resource Include="DeckOfCards\cj.png" />
+    <Resource Include="DeckOfCards\ck.png" />
+    <Resource Include="DeckOfCards\cq.png" />
+    <Resource Include="DeckOfCards\d1.png" />
+    <Resource Include="DeckOfCards\d10.png" />
+    <Resource Include="DeckOfCards\d2.png" />
+    <Resource Include="DeckOfCards\d3.png" />
+    <Resource Include="DeckOfCards\d4.png" />
+    <Resource Include="DeckOfCards\d5.png" />
+    <Resource Include="DeckOfCards\d6.png" />
+    <Resource Include="DeckOfCards\d7.png" />
+    <Resource Include="DeckOfCards\d8.png" />
+    <Resource Include="DeckOfCards\d9.png" />
+    <Resource Include="DeckOfCards\dj.png" />
+    <Resource Include="DeckOfCards\dk.png" />
+    <Resource Include="DeckOfCards\dq.png" />
+    <Resource Include="DeckOfCards\h1.png" />
+    <Resource Include="DeckOfCards\h10.png" />
+    <Resource Include="DeckOfCards\h2.png" />
+    <Resource Include="DeckOfCards\h3.png" />
+    <Resource Include="DeckOfCards\h4.png" />
+    <Resource Include="DeckOfCards\h5.png" />
+    <Resource Include="DeckOfCards\h6.png" />
+    <Resource Include="DeckOfCards\h7.png" />
+    <Resource Include="DeckOfCards\h8.png" />
+    <Resource Include="DeckOfCards\h9.png" />
+    <Resource Include="DeckOfCards\hj.png" />
+    <Resource Include="DeckOfCards\hk.png" />
+    <Resource Include="DeckOfCards\hq.png" />
+    <Resource Include="DeckOfCards\s1.png" />
+    <Resource Include="DeckOfCards\s10.png" />
+    <Resource Include="DeckOfCards\s2.png" />
+    <Resource Include="DeckOfCards\s3.png" />
+    <Resource Include="DeckOfCards\s4.png" />
+    <Resource Include="DeckOfCards\s5.png" />
+    <Resource Include="DeckOfCards\s6.png" />
+    <Resource Include="DeckOfCards\s7.png" />
+    <Resource Include="DeckOfCards\s8.png" />
+    <Resource Include="DeckOfCards\s9.png" />
+    <Resource Include="DeckOfCards\sj.png" />
+    <Resource Include="DeckOfCards\sk.png" />
+    <Resource Include="DeckOfCards\sq.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
