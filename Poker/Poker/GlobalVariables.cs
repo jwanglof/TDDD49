@@ -14,6 +14,9 @@ namespace Poker
         public static Player player1;
         public static Player player2;
 
+        public static Reward reward1;
+        public static Reward reward2;
+
         public static void initGlobalVariables()
         {
             initCardNumbers();
