@@ -30,9 +30,11 @@ namespace Poker
             this.number = number;
             this.suit = suit;
 
-            lblNumber.Content = GlobalVariables.toCardValue(number);
-            lblSuit.Content = GlobalVariables.toCardSuit(suit);
-
+            string imagePath = "DeckOfCards/"+GlobalVariables.toCardSuit(suit)+GlobalVariables.toCardValue(number)+".png";
+            image.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
+          
+            //lblNumber.Content = GlobalVariables.toCardValue(number);
+            //lblSuit.Content = GlobalVariables.toCardSuit(suit);
         }        
         public int getNumber()
         {
@@ -45,8 +47,8 @@ namespace Poker
 
         private void onMouseUp(object sender, MouseButtonEventArgs e)
         {
-            lblNumber.Content = "99";
-            lblSuit.Content = "66";
+            //lblNumber.Content = "99";
+            //lblSuit.Content = "66";
         }
 
         
