@@ -15,24 +15,16 @@ using System.Windows.Shapes;
 
 namespace Poker
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    public partial class Reward : UserControl
     {
-        public MainWindow()
+        public Reward()
         {
             InitializeComponent();
+        } 
 
-            GlobalVariables.initGlobalVariables();
-            GlobalVariables.player1 = player1;
-            GlobalVariables.player2 = player2;
-
-            GlobalVariables.reward1 = reward1;
-            GlobalVariables.reward2 = reward2;
-
-            Game game = new Game();
-            game.start();
+        public int getPlayerReward(Player player)
+        {
+            return 2;
         }
     }
 }

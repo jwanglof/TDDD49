@@ -8,13 +8,19 @@
     <Grid>
         <Canvas x:Name="mainCanvas">
             <Grid x:Name="startGrid">
-</Grid>
-            
+            </Grid>
             <Grid x:Name="gridPlayer1" Canvas.Left="100">
                 <local:Player x:Name="player1"></local:Player>
             </Grid>
             <Grid x:Name="gridPlayer2" Canvas.Left="100" Canvas.Bottom="0">
                 <local:Player x:Name="player2"></local:Player>
+            </Grid>
+            
+            <Grid x:Name="playerMoney1" Canvas.Left="20" Canvas.Top="10">
+                <local:Reward x:Name="reward1"></local:Reward>
+            </Grid>
+            <Grid x:Name="playerMoney2" Canvas.Left="20" Canvas.Bottom="40">
+                <local:Reward x:Name="reward2"></local:Reward>
             </Grid>
         </Canvas>
     </Grid>
