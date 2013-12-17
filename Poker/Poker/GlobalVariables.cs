@@ -16,9 +16,6 @@ namespace Poker
         public static Player player1;
         public static Player player2;
 
-        public static Reward reward1;
-        public static Reward reward2;
-
         public static void initGlobalVariables()
         {
             initCardNumbers();
@@ -27,7 +24,7 @@ namespace Poker
 
         private static void initCardNumbers() 
         {
-            cardNumbers[1] = "A";
+            cardNumbers[1] = "1";
             cardNumbers[2] = "2";
             cardNumbers[3] = "3";
             cardNumbers[4] = "4";
@@ -37,17 +34,21 @@ namespace Poker
             cardNumbers[8] = "8";
             cardNumbers[9] = "9";
             cardNumbers[10] = "10";
-            cardNumbers[11] = "Kn";
-            cardNumbers[12] = "Q";
-            cardNumbers[13] = "K";
+            cardNumbers[11] = "j";
+            cardNumbers[12] = "q";
+            cardNumbers[13] = "k";
         }
 
         private static void initCardSuits()
         {
-            suitNumbers[1] = "Spades";
+            /*suitNumbers[1] = "Spades";
             suitNumbers[2] = "Clubs";
             suitNumbers[3] = "Diamonds";
-            suitNumbers[4] = "Hearts";
+            suitNumbers[4] = "Hearts";*/
+            suitNumbers[1] = "s";
+            suitNumbers[2] = "c";
+            suitNumbers[3] = "d";
+            suitNumbers[4] = "h";
         }
 
         private static void initRealCards()

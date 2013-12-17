@@ -28,10 +28,7 @@ namespace Poker
             GlobalVariables.player1 = player1;
             GlobalVariables.player2 = player2;
 
-            GlobalVariables.reward1 = reward1;
-            GlobalVariables.reward2 = reward2;
-
-            Game game = new Game();
+            Game game = new Game(pot);
             game.start();
         }
     }

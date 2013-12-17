@@ -21,6 +21,7 @@ namespace Poker
     public partial class Player : UserControl
     {
         private List<Card> hand = new List<Card>();
+        private bool myTurn = false;
         public Player()
         {
             InitializeComponent();
@@ -30,6 +31,13 @@ namespace Poker
         {
             hand.Add(card);
             Console.WriteLine("added card!");       
+        }
+
+        public void addCards(List<Card> cards)
+        {
+            hand.AddRange(cards);
+            updateHand();
+            Console.WriteLine("added " + cards.Count + " cards!");
         }
         
         public void updateHand()
@@ -42,10 +50,44 @@ namespace Poker
             }
         }
 
+        public List<Card> removeSelectedCards()
+        {
+            List<Card> selectedCards = new List<Card>();
+            List<Card> selected = hand.Where(card => card.cardSelected).ToList();
+            foreach (Card card in selected)
+            {
+                card.cardSelected = false;
+                selectedCards.Add(card);
+                hand.Remove(card);
+            }
+            return selectedCards;
+        }
+
         public void throwCard(Card card)
         {
             hand.Remove(card);
             Console.WriteLine("removed card!");
+        }
+
+        public void clearCards()
+        {
+            cardGrid.Children.Clear();
+            hand.Clear();
+        }
+
+        public bool turn()
+        {
+            return myTurn;
+        }
+
+        public void toggleTurn()
+        {
+            myTurn = !myTurn;
+            cardGrid.IsEnabled = myTurn;
+            if (myTurn)
+                turnGrid.Visibility = System.Windows.Visibility.Visible;
+            else
+                turnGrid.Visibility = System.Windows.Visibility.Hidden;
         }
     }
 }

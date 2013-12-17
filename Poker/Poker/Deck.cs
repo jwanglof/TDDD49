@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Poker
 {
-    public static class Deck
+    public class Deck
     {
-        private static List<Card> allCards = new List<Card>();
-        private static List<Card> cardsInDeck = new List<Card>();
-        private static List<Card> thrownCards = new List<Card>();
+        private List<Card> allCards = new List<Card>();
+        private List<Card> cardsInDeck = new List<Card>();
+        private List<Card> thrownCards = new List<Card>();
 
-        public static void initCards()
+        public Deck()
         {
             for (int suit = 1; suit <= 4; suit++)
                 for (int number = 1; number <= 13; number++)
@@ -20,13 +20,14 @@ namespace Poker
 
             resetDeck();
         }
-        public static void resetDeck()
+        public void resetDeck()
         {
-            cardsInDeck = allCards;
+            cardsInDeck.Clear();
+            for (int i = 0; i < allCards.Count; i++)
+                cardsInDeck.Add(allCards[i]);
             shuffleCards();
         }
-
-        private static void shuffleCards()
+        private void shuffleCards()
         {
             List<Card> shuffled = new List<Card>();
             Random rand = new Random();
@@ -39,8 +40,7 @@ namespace Poker
             }
             cardsInDeck = shuffled;
         }
-
-        public static Card takeCard()
+        public Card takeCard()
         {
             //If deck i empty, add thrown cards and shuffle
             if (cardsInDeck.Count == 0)
@@ -55,9 +55,17 @@ namespace Poker
             return card;
         }
 
-        public static void throwCard(Card card)
+        public List<Card> takeCards(int amount)
         {
-            thrownCards.Add(card);
+            List<Card> cards = new List<Card>();
+            for (int i = 0; i < amount; i++)
+                cards.Add(takeCard());
+            return cards;
+        }
+
+        public void throwCards(List<Card> cards)
+        {
+            thrownCards.AddRange(cards);
         }
     }
 }
