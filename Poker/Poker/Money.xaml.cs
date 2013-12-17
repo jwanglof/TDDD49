@@ -21,7 +21,7 @@ namespace Poker
         public Money()
         {
             InitializeComponent();
-        } 
+        }
         
         public void add(int amount)
         {

@@ -84,7 +84,12 @@ namespace Poker
                 {
                     // Game finished, reset everything and crown a winner!
                     Console.WriteLine("RESET EVERYTHING!!!!");
-                    
+
+                    // Reset the pot
+                    // Reset the deck
+                    // Give the players new cards
+                    giveCards();
+                    GlobalVariables.player1.toggleTurn();
                     // Add to the victorious players pot
                     // Subtract from the losing players pot
                     //GlobalVariables.player1.subtractFromMoney(pot.getMoney());
