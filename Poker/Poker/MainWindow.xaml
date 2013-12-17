@@ -10,7 +10,7 @@
             <Grid x:Name="startGrid">
             </Grid>
             <Grid x:Name="gridPlayer1" >
-                <local:Player x:Name="player1"></local:Player>
+                <local:Player x:Name="player1" Margin="0,10,0,-10"></local:Player>
             </Grid>
             <Grid x:Name="gridPlayer2" Canvas.Bottom="0">
                 <local:Player x:Name="player2"></local:Player>

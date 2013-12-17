@@ -15,6 +15,10 @@ namespace Poker
         private Money pot;
         private int startMoney = 200;
         private int turns = 0;
+        private int totalTurns = 1;
+
+        private int player1TotalBet = 0;
+        private int player2TotalBet = 0;
         public Game(Money pot)
         {
             this.pot = pot;
@@ -76,16 +80,41 @@ namespace Poker
 
             if (turns == 2) //Change the selected cards, no toggle since its only 2 players at the momement every player will start a round every second time.
             {
-                turns = 0;
+                if (this.totalTurns == 3)
+                {
+                    // Game finished, reset everything and crown a winner!
+                    Console.WriteLine("RESET EVERYTHING!!!!");
+                    
+                    // Add to the victorious players pot
+                    // Subtract from the losing players pot
+                    //GlobalVariables.player1.subtractFromMoney(pot.getMoney());
+                    //GlobalVariables.player2.addToMoney(pot.getMoney());
+                }
+                else
+                {
+                    turns = 0;
+                    this.totalTurns += 1;
 
-                List<Card> cardsToThrow = GlobalVariables.player1.removeSelectedCards();
-                GlobalVariables.player1.addCards(deck.takeCards(cardsToThrow.Count));
-                deck.throwCards(cardsToThrow);
-                
+                    List<Card> cardsToThrow = GlobalVariables.player1.removeSelectedCards();
+                    GlobalVariables.player1.addCards(deck.takeCards(cardsToThrow.Count));
+                    deck.throwCards(cardsToThrow);
+                    
+                    cardsToThrow = GlobalVariables.player2.removeSelectedCards();
+                    GlobalVariables.player2.addCards(deck.takeCards(cardsToThrow.Count));
+                    deck.throwCards(cardsToThrow);
 
-                cardsToThrow = GlobalVariables.player2.removeSelectedCards();
-                GlobalVariables.player2.addCards(deck.takeCards(cardsToThrow.Count));
-                deck.throwCards(cardsToThrow);
+                    pot.add(GlobalVariables.player1.getPrevBet() + GlobalVariables.player2.getPrevBet());
+
+                    // Reset both player's betting
+                    GlobalVariables.player1.setPrevBet(0);
+                    GlobalVariables.player2.setPrevBet(0);
+                    GlobalVariables.player1.betCounter.Text = "0";
+                    GlobalVariables.player2.betCounter.Text = "0";
+
+                    // To keep track of how much each player has played for in total
+                    this.player1TotalBet += GlobalVariables.player1.getPrevBet();
+                    this.player2TotalBet += GlobalVariables.player2.getPrevBet();
+                }
             }
             else
             {

@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <local:Money x:Name="money" Grid.Column="0" VerticalAlignment="Center"></local:Money>
        
-        <Grid x:Name="betGrid" Grid.Column="1" IsEnabled="True" Margin="0,36,0,0">
+        <Grid x:Name="betGrid" Grid.Column="1" IsEnabled="False" Margin="0,36,0,0">
             <TextBox Name="betCounter" Margin="0,-34,0,39" TextAlignment="Center" IsEnabled="False">0</TextBox>
             <Button Click="addBet" HorizontalAlignment="Left" Width="29">+ 1</Button>
             <Button Click="addBet10" HorizontalAlignment="Left" Margin="29,0,0,0">+ 10</Button>
