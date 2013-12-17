@@ -15,7 +15,7 @@ namespace Poker
         public Deck()
         {
             for (int suit = 1; suit <= 4; suit++)
-                for (int number = 1; number <= 13; number++)
+                for (int number = 2; number <= 14; number++)
                     allCards.Add(new Card(number, suit));
 
             resetDeck();

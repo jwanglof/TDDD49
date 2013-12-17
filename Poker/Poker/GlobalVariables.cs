@@ -24,7 +24,7 @@ namespace Poker
 
         private static void initCardNumbers() 
         {
-            cardNumbers[1] = "1";
+            //cardNumbers[1] = "1";
             cardNumbers[2] = "2";
             cardNumbers[3] = "3";
             cardNumbers[4] = "4";
@@ -37,6 +37,7 @@ namespace Poker
             cardNumbers[11] = "j";
             cardNumbers[12] = "q";
             cardNumbers[13] = "k";
+            cardNumbers[14] = "1";
         }
 
         private static void initCardSuits()
