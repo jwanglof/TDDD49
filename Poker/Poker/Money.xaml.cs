@@ -51,5 +51,10 @@ namespace Poker
         {
             lblValue.Content = money;     
         }
+
+        public int getMoney()
+        {
+            return this.money;
+        }
     }
 }

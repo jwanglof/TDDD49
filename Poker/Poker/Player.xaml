@@ -4,15 +4,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Poker"
              Height="70">
-
     <Grid x:Name="playerGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <local:Money x:Name="money" Grid.Column="0" VerticalAlignment="Center"></local:Money>
-        <Grid x:Name="cardGrid" Grid.Column="1" IsEnabled="False">
+       
+        <Grid x:Name="betGrid" Grid.Column="1" IsEnabled="True" Margin="0,36,0,0">
+            <TextBox Name="betCounter" Margin="0,-34,0,39" TextAlignment="Center" IsEnabled="False">0</TextBox>
+            <Button Click="addBet" HorizontalAlignment="Left" Width="29">+ 1</Button>
+            <Button Click="addBet10" HorizontalAlignment="Left" Margin="29,0,0,0">+ 10</Button>
+            <Button Click="resetBet" HorizontalAlignment="Center" Margin="59,0,56,0">Reset</Button>
+            <Button Click="subtrBet10" HorizontalAlignment="Right" Margin="0,0,29,0">- 10</Button>
+            <Button Click="subtrBet" HorizontalAlignment="Right" Width="29">- 1</Button>
+        </Grid>
+        
+        <Grid x:Name="cardGrid" Grid.Column="2" IsEnabled="False">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70"/>
                 <ColumnDefinition Width="70"/>
@@ -21,7 +31,7 @@
                 <ColumnDefinition Width="70"/>
             </Grid.ColumnDefinitions>
         </Grid>
-        <Grid x:Name="turnGrid" Grid.Column="2" Visibility="Hidden">
+        <Grid x:Name="turnGrid" Grid.Column="3" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>

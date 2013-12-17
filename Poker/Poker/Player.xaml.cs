@@ -22,6 +22,7 @@ namespace Poker
     {
         private List<Card> hand = new List<Card>();
         private bool myTurn = false;
+        private int prevBet = 0;
         public Player()
         {
             InitializeComponent();
@@ -88,6 +89,69 @@ namespace Poker
                 turnGrid.Visibility = System.Windows.Visibility.Visible;
             else
                 turnGrid.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void addBet(object sender, RoutedEventArgs e)
+        {
+            // Need to check so that the player can't bet above his current cash
+            if (this.prevBet < money.getMoney())
+            {
+                this.prevBet += 1;
+                betCounter.Text = this.prevBet.ToString();
+            }
+        }
+        private void addBet10(object sender, RoutedEventArgs e)
+        {
+            // Need to check so that the player can't bet above his current cash
+            if (this.prevBet < money.getMoney()-10)
+            {
+                this.prevBet += 10;
+                betCounter.Text = this.prevBet.ToString();
+            }
+            else
+            {
+                this.prevBet = money.getMoney();
+                betCounter.Text = this.prevBet.ToString();
+            }
+        }
+
+        private void subtrBet(object sender, RoutedEventArgs e)
+        {
+            if (this.prevBet > 0)
+            {
+                this.prevBet -= 1;
+                betCounter.Text = this.prevBet.ToString();
+            }
+            else
+            {
+                this.prevBet = 0;
+                betCounter.Text = "0";
+            }
+        }
+
+        private void subtrBet10(object sender, RoutedEventArgs e)
+        {
+            if (this.prevBet > 10)
+            {
+                this.prevBet -= 10;
+                betCounter.Text = this.prevBet.ToString();
+            }
+            else
+            {
+                this.prevBet = 0;
+                betCounter.Text = "0";
+            }
+        }
+
+        private void resetBet(object sender, RoutedEventArgs e)
+        {
+            this.prevBet = 0;
+            betCounter.Text = "0";
+        }
+
+        public int getPrevBet()
+        {
+            return this.prevBet;
         }
     }
 }
