@@ -25,12 +25,14 @@ namespace Poker
         
         public void add(int amount)
         {
+            Console.WriteLine("Added money, amount=" + amount);
             money += amount;
             updateGUI();
         }
 
         public bool remove(int amount)
         {
+            Console.WriteLine("Removed money, amount=" + amount);
             if (amount > money)
                 return false;
 

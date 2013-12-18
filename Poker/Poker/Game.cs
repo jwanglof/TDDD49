@@ -57,12 +57,12 @@ namespace Poker
         //Not used, saved for possible later usage
         private void playerMouseUp(object sender, MouseButtonEventArgs e)
         {
-            int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
+            /*int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
             Console.WriteLine("Winner is player" + winner);
             GlobalVariables.player1.clearCards();
             GlobalVariables.player2.clearCards();
             deck.resetDeck();
-            giveCards();
+            giveCards();*/
         }
 
         private void btnDoneClick(object sender, RoutedEventArgs e)
@@ -93,10 +93,27 @@ namespace Poker
                     // Give the players new cards
                     giveCards();
                     GlobalVariables.player1.toggleTurn();
+
+                    int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
+
                     // Add to the victorious players pot
                     // Subtract from the losing players pot
-                    //GlobalVariables.player1.subtractFromMoney(pot.getMoney());
-                    //GlobalVariables.player2.addToMoney(pot.getMoney());
+                    if (winner == 1)
+                    {
+                        Console.WriteLine("Player 1 won!");
+                        GlobalVariables.player1.addToMoney(pot.getMoney());
+                        GlobalVariables.player2.subtractFromMoney(this.player2TotalBet);
+                    }
+                    else if (winner == 2)
+                    {
+                        Console.WriteLine("Player 2 won!");
+                        GlobalVariables.player2.addToMoney(pot.getMoney());
+                        GlobalVariables.player1.subtractFromMoney(this.player1TotalBet);
+                    }
+
+                    this.totalTurns = 1;
+                    this.player1TotalBet = 0;
+                    this.player2TotalBet = 0;
                 }
                 else
                 {
