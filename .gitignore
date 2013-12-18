@@ -1,3 +1,10 @@
-Poker/Poker/bin/*
-Poker/Poker/obj/*
-Poker/Poker.v12.suo
+[Bb]in
+[Oo]bj
+*.user
+*.suo
+*.[Cc]ache
+*.bak
+*.ncb
+*.log 
+*.DS_Store
+[Tt]humbs.db

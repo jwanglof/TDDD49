@@ -91,9 +91,15 @@ namespace Poker
             myTurn = !myTurn;
             cardGrid.IsEnabled = myTurn;
             if (myTurn)
+            {
                 turnGrid.Visibility = System.Windows.Visibility.Visible;
+                betGrid.IsEnabled = true;
+            }
             else
+            {
                 turnGrid.Visibility = System.Windows.Visibility.Hidden;
+                betGrid.IsEnabled = false;
+            }
         }
 
         private void addBet(object sender, RoutedEventArgs e)
@@ -157,6 +163,20 @@ namespace Poker
         public int getPrevBet()
         {
             return this.prevBet;
+        }
+        public void setPrevBet(int newValue)
+        {
+            this.prevBet = newValue;
+        }
+
+        public void subtractFromMoney(int value)
+        {
+            money.remove(value);
+        }
+
+        public void addToMoney(int value)
+        {
+            money.add(value);
         }
     }
 }
