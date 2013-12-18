@@ -92,11 +92,7 @@ namespace Poker
                     // Reset the deck
                     // Give the players new cards
                     //giveCards();
-                    //GlobalVariables.player1.toggleTurn();
-                    GlobalVariables.player1.clearCards();
-                    GlobalVariables.player2.clearCards();
-                    deck.resetDeck();
-                    giveCards();
+                    //
 
                     int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
 
@@ -118,6 +114,12 @@ namespace Poker
                     this.totalTurns = 1;
                     this.player1TotalBet = 0;
                     this.player2TotalBet = 0;
+
+                    GlobalVariables.player1.clearCards();
+                    GlobalVariables.player2.clearCards();
+                    deck.resetDeck();
+                    giveCards();
+                    GlobalVariables.player1.toggleTurn();
                 }
                 else
                 {
@@ -137,16 +139,16 @@ namespace Poker
                     GlobalVariables.player1.subtractFromMoney(GlobalVariables.player1.getPrevBet());
                     GlobalVariables.player2.subtractFromMoney(GlobalVariables.player2.getPrevBet());
 
-                    // Reset both player's betting
-                    GlobalVariables.player1.setPrevBet(0);
-                    GlobalVariables.player2.setPrevBet(0);
-                    GlobalVariables.player1.betCounter.Text = "0";
-                    GlobalVariables.player2.betCounter.Text = "0";
-
                     // To keep track of how much each player has played for in total
                     this.player1TotalBet += GlobalVariables.player1.getPrevBet();
                     this.player2TotalBet += GlobalVariables.player2.getPrevBet();
                 }
+
+                // Reset both player's betting
+                GlobalVariables.player1.setPrevBet(0);
+                GlobalVariables.player2.setPrevBet(0);
+                GlobalVariables.player1.betCounter.Text = "0";
+                GlobalVariables.player2.betCounter.Text = "0";
             }
             else
             {
