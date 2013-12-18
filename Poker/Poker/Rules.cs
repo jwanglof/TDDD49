@@ -52,30 +52,31 @@ namespace Poker
             Dictionary<String, int> score = new Dictionary<string, int>();
             //RoyalFlush
             score["RoyalFlush"] = checkRoyalFlush(cards);
+
             //StraightFlush
             score["StraightFlush"] = checkStraightFlush(cards);
+
             //Four
             score["Four"] = checkFour(cards);
+
             //FullHouse
-            score["FullHouse"] = checkFullHouse(cards);
+            Tuple<int, int> fullHouse = checkFullHouse(cards);
+            score["FullHouseHigh"] = fullHouse.Item1;
+            score["FullHouseLow"] = fullHouse.Item2;
+
             //Flush
             score["Flush"] = checkFlush(cards);
+
             //Straight
             score["Straight"] = checkStraight(cards);
+
             //Three
             score["Three"] = checkThree(cards);
+
             //TwoPairs
             Tuple<int, int> twoPairs = checkTwoPairs(cards);
-            if (twoPairs == null)
-            {
-                score["TwoPairsHigh"] = 0;
-                score["TwoPairsLow"] = 0;
-            }
-            else
-            {
-                score["TwoPairsHigh"] = twoPairs.Item1;
-                score["TwoPairsLow"] = twoPairs.Item2;
-            }
+            score["TwoPairsHigh"] = twoPairs.Item1;
+            score["TwoPairsLow"] = twoPairs.Item2;
 
             //Pair
             score["Pair"] = checkPair(cards);
@@ -99,17 +100,35 @@ namespace Poker
 
         private int checkRoyalFlush(List<Card> cards)
         {
+            if (checkStraightFlush(cards) == 14)
+                return cards[0].getSuit();
+
             return 0;
         }
 
         private int checkStraightFlush(List<Card> cards)
         {
+            int score = checkStraight(cards);
+            if ((score != 0) && (checkFlush(cards) != 0))
+                return score;
+
             return 0;
         }
 
-        private int checkFullHouse(List<Card> cards)
+        private Tuple<int, int> checkFullHouse(List<Card> cards)
         {
-            return 0;
+            Tuple<int, int> twoPairs = checkTwoPairs(cards); 
+            if(twoPairs.Item1 != 0)
+            {
+                int high = checkThree(cards);
+                if (high != 0)
+                    if (twoPairs.Item1 == high)
+                        return twoPairs;
+                    else
+                        return new Tuple<int, int>(twoPairs.Item2, twoPairs.Item1);
+            }
+
+            return twoPairs;
         }
 
         private int checkStraight(List<Card> cards)
@@ -181,8 +200,6 @@ namespace Poker
         //Returns null if not found, returns highest pair as tuple.item1
         private Tuple<int, int> checkTwoPairs(List<Card> cards)
         {
-            Tuple<int, int> pairValue = null;
-
             int firstPair = checkPair(cards);
             if (firstPair != 0)
             {
@@ -191,12 +208,12 @@ namespace Poker
                 int secondPair = checkPair(cards);
                 if(secondPair != 0) 
                     if(firstPair > secondPair)
-                        pairValue = new Tuple<int,int>(firstPair,secondPair);
+                        return(new Tuple<int,int>(firstPair,secondPair));
                     else
-                        pairValue = new Tuple<int,int>(secondPair,firstPair);   
+                        return(new Tuple<int,int>(secondPair,firstPair));   
             }
 
-            return pairValue;
+            return new Tuple<int,int>(0,0);
         }
     }
 }
