@@ -130,6 +130,9 @@ namespace Poker
 
                     pot.add(GlobalVariables.player1.getPrevBet() + GlobalVariables.player2.getPrevBet());
 
+                    GlobalVariables.player1.subtractFromMoney(GlobalVariables.player1.getPrevBet());
+                    GlobalVariables.player2.subtractFromMoney(GlobalVariables.player2.getPrevBet());
+
                     // Reset both player's betting
                     GlobalVariables.player1.setPrevBet(0);
                     GlobalVariables.player2.setPrevBet(0);
