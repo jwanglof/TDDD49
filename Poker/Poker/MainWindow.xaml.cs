@@ -35,8 +35,6 @@ namespace Poker
         private void saveState(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("State is saved!");
-
-            using (Game)
         }
     }
 }
