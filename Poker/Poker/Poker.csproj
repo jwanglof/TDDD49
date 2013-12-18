@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ET.cs" />
     <Compile Include="Money.xaml.cs">
       <DependentUpon>Money.xaml</DependentUpon>
     </Compile>

@@ -32,9 +32,49 @@ namespace Poker
             game.start();
         }
 
-        private void saveState(object sender, RoutedEventArgs e)
+        public void saveState(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("State is saved!");
+            gameNamePopup.Visibility = System.Windows.Visibility.Visible;
+            
+        }
+
+        public void stateCloseWindow(object sender, RoutedEventArgs e)
+        {
+            gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        public void stateSaveGame(object sender, RoutedEventArgs e)
+        {
+            gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
+
+            using (var db = new StateContext())
+            {
+                String gameName = stateName.Text;
+
+                var state = new State { stateTitle = gameName };
+                db.States.Add(state);
+                db.SaveChanges();
+
+                Console.WriteLine("State is saved as " + gameName + "!");
+            }
+        }
+
+        public void loadState(object sender, RoutedEventArgs e)
+        {
+            using (var db = new StateContext())
+            {
+                var query = from b in db.States
+                            orderby b.stateTitle
+                            select b;
+
+                foreach (var item in query)
+                {
+                    Console.WriteLine(item.id);
+                    Console.WriteLine(item.stateTitle);
+                }
+
+                var state = db.States.Find(1);
+            }
         }
     }
 }
