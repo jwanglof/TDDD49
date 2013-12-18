@@ -91,7 +91,7 @@ namespace Poker
             return score;
         }
 
-        private void printScore(Dictionary<String, int> score)
+        public void printScore(Dictionary<String, int> score)
         {
             Console.WriteLine("#### BEGIN PRINT SCORE ######");
             foreach (KeyValuePair<String, int> pair in score)
@@ -99,7 +99,7 @@ namespace Poker
             Console.WriteLine("#### END PRINT SCORE ######");
         }
 
-        private int checkRoyalFlush(List<Card> cards)
+        public int checkRoyalFlush(List<Card> cards)
         {
             if (checkStraightFlush(cards) == 14)
                 return cards[0].getSuit();
@@ -107,16 +107,16 @@ namespace Poker
             return 0;
         }
 
-        private int checkStraightFlush(List<Card> cards)
+        public int checkStraightFlush(List<Card> cards)
         {
-            int score = checkStraight(cards);
-            if ((score != 0) && (checkFlush(cards) != 0))
-                return score;
+            int score = checkFlush(cards);
+            if ((score != 0) && (checkStraight(cards) != 0))
+                    return score;
 
             return 0;
         }
 
-        private Tuple<int, int> checkFullHouse(List<Card> cards)
+        public Tuple<int, int> checkFullHouse(List<Card> cards)
         {
             Tuple<int, int> twoPairs = checkTwoPairs(cards); 
             if(twoPairs.Item1 != 0)
@@ -132,9 +132,9 @@ namespace Poker
             return twoPairs;
         }
 
-        private int checkStraight(List<Card> cards)
+        public int checkStraight(List<Card> cards)
         {
-            cards = cards.OrderByDescending(card => card.getNumber()).ToList();
+            cards = cards.OrderBy(card => card.getNumber()).ToList();
 
             //If there's a ace and a two we should not check the ace as normal
             bool aceAndTwo = ((cards[cards.Count-1].getNumber() == 14) && (cards[1].getNumber() == 2));
@@ -154,18 +154,22 @@ namespace Poker
         }
 
         //Need to have 5 cards in list to use this method
-        private int checkFlush(List<Card> cards)
+        public int checkFlush(List<Card> cards)
         {
             //Take suit of first card and compare to every other card
             cards = cards.OrderByDescending(card => card.getNumber()).ToList();
             int color = cards[0].getSuit();
+            Console.WriteLine("0color="+color);
             for (int i = 1; i < cards.Count; i++)
+            {
+                Console.WriteLine("color" + i + "=" + cards[i].getSuit());
                 if (cards[i].getSuit() != color)
                     return 0;
+            }
 
-            return 1;
+            return cards[0].getNumber();
         }
-        private int checkFour(List<Card> cards)
+        public int checkFour(List<Card> cards)
         {
             //Only need to comapre rest of the cards with the two first cards. If no Four has been found at that point, none will be found.
             cards = cards.OrderByDescending(card => card.getNumber()).ToList();
@@ -177,7 +181,7 @@ namespace Poker
             return 0;
         }
 
-        private int checkThree(List<Card> cards)
+        public int checkThree(List<Card> cards)
         {
             cards = cards.OrderByDescending(card => card.getNumber()).ToList();
             for (int i = 2; i < cards.Count; i++)
@@ -187,8 +191,8 @@ namespace Poker
 
             return 0;
         }
-        
-        private int checkPair(List<Card> cards)
+
+        public int checkPair(List<Card> cards)
         {
             cards = cards.OrderByDescending(card => card.getNumber()).ToList();
             for (int i = 1; i < cards.Count; i++)
@@ -199,7 +203,7 @@ namespace Poker
         }
 
         //Returns null if not found, returns highest pair as tuple.item1
-        private Tuple<int, int> checkTwoPairs(List<Card> cards)
+        public Tuple<int, int> checkTwoPairs(List<Card> cards)
         {
             int firstPair = checkPair(cards);
             if (firstPair != 0)

@@ -33,14 +33,23 @@ namespace Poker
 
             string imagePath = "DeckOfCards/"+GlobalVariables.toCardSuit(suit)+GlobalVariables.toCardValue(number)+".png";
             image.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
-        }        
+        }   
+
+        //Only for testcases
+        public Card(int number, int suit, bool test)
+        {
+            InitializeComponent();
+
+            this.number = number;
+            this.suit = suit;
+        }
         public int getNumber()
         {
             return number;
         }
         public int getSuit()
         {
-            return number;
+            return suit;
         }
  
         private void onMouseUp(object sender, MouseButtonEventArgs e)
