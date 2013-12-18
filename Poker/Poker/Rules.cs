@@ -9,25 +9,26 @@ namespace Poker
     public class Rules
     {
 
-        private String[] priority = new String[15];
+        private String[] priority = new String[16];
 
         public Rules()
         {
             priority[0] = ("RoyalFlush");
             priority[1] = ("StraightFlush");
             priority[2] = ("Four");
-            priority[3] = ("FullHouse");
-            priority[4] = ("Flush");
-            priority[5] = ("Straight");
-            priority[6] = ("Three");
-            priority[7] = ("TwoPairsHigh");
-            priority[8] = ("TwoPairsLow");
-            priority[9] = ("Pair");
-            priority[10] = ("h1");
-            priority[11] = ("h2");
-            priority[12] = ("h3");
-            priority[13] = ("h4");
-            priority[14] = ("h5");
+            priority[3] = ("FullHouseThree");
+            priority[4] = ("FullHouseTwo");
+            priority[5] = ("Flush");
+            priority[6] = ("Straight");
+            priority[7] = ("Three");
+            priority[8] = ("TwoPairsHigh");
+            priority[9] = ("TwoPairsLow");
+            priority[10] = ("Pair");
+            priority[11] = ("h1");
+            priority[12] = ("h2");
+            priority[13] = ("h3");
+            priority[14] = ("h4");
+            priority[15] = ("h5");
         }
         public int checkBestHand(List<Card> player1Cards, List<Card> player2Cards)
         {
@@ -61,8 +62,8 @@ namespace Poker
 
             //FullHouse
             Tuple<int, int> fullHouse = checkFullHouse(cards);
-            score["FullHouseHigh"] = fullHouse.Item1;
-            score["FullHouseLow"] = fullHouse.Item2;
+            score["FullHouseThree"] = fullHouse.Item1;
+            score["FullHouseTwo"] = fullHouse.Item2;
 
             //Flush
             score["Flush"] = checkFlush(cards);
