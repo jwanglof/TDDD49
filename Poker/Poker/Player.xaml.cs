@@ -104,16 +104,18 @@ namespace Poker
 
         private void addBet(object sender, RoutedEventArgs e)
         {
-            // Need to check so that the player can't bet above his current cash
+            // Need to check so that the player can't bet mote then his current cash
             if (this.prevBet < money.getMoney())
             {
                 this.prevBet += 1;
                 betCounter.Text = this.prevBet.ToString();
             }
+
+            btnDone.Content = "Raise";
         }
         private void addBet10(object sender, RoutedEventArgs e)
         {
-            // Need to check so that the player can't bet above his current cash
+            // Need to check so that the player can't bet more then his current cash
             if (this.prevBet < money.getMoney()-10)
             {
                 this.prevBet += 10;
@@ -124,6 +126,8 @@ namespace Poker
                 this.prevBet = money.getMoney();
                 betCounter.Text = this.prevBet.ToString();
             }
+
+            btnDone.Content = "Raise";
         }
 
         private void subtrBet(object sender, RoutedEventArgs e)
@@ -132,11 +136,13 @@ namespace Poker
             {
                 this.prevBet -= 1;
                 betCounter.Text = this.prevBet.ToString();
+                btnDone.Content = "Raise";
             }
             else
             {
                 this.prevBet = 0;
                 betCounter.Text = "0";
+                btnDone.Content = "Call";
             }
         }
 
@@ -146,11 +152,13 @@ namespace Poker
             {
                 this.prevBet -= 10;
                 betCounter.Text = this.prevBet.ToString();
+                btnDone.Content = "Raise";
             }
             else
             {
                 this.prevBet = 0;
                 betCounter.Text = "0";
+                btnDone.Content = "Call";
             }
         }
 
@@ -158,6 +166,14 @@ namespace Poker
         {
             this.prevBet = 0;
             betCounter.Text = "0";
+            btnDone.Content = "Call";
+        }
+
+        private void allIn(object sender, RoutedEventArgs e)
+        {
+            this.prevBet = money.getMoney();
+            betCounter.Text = this.prevBet.ToString();
+            btnDone.Content = "All in";
         }
 
         public int getPrevBet()

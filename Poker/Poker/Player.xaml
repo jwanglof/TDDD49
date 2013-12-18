@@ -7,7 +7,7 @@
     <Grid x:Name="playerGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="190"/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -17,7 +17,8 @@
             <TextBox Name="betCounter" Margin="0,-34,0,39" TextAlignment="Center" IsEnabled="False">0</TextBox>
             <Button Click="addBet" HorizontalAlignment="Left" Width="29">+ 1</Button>
             <Button Click="addBet10" HorizontalAlignment="Left" Margin="29,0,0,0">+ 10</Button>
-            <Button Click="resetBet" HorizontalAlignment="Center" Margin="59,0,56,0">Reset</Button>
+            <Button Click="resetBet" HorizontalAlignment="Center" Margin="59,0,91,0" Width="40">Reset</Button>
+            <Button Click="allIn" HorizontalAlignment="Center" Margin="99,0,56,0" Width="35">AllIn</Button>
             <Button Click="subtrBet10" HorizontalAlignment="Right" Margin="0,0,29,0">- 10</Button>
             <Button Click="subtrBet" HorizontalAlignment="Right" Width="29">- 1</Button>
         </Grid>
@@ -37,7 +38,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Your turn!</Label>
-            <Button x:Name="btnDone" Content="Done"  Grid.Row="1" />
+            <Button x:Name="btnDone" Content="Call" Grid.Row="1" />
         </Grid>
     </Grid>
 </UserControl>
