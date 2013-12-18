@@ -91,8 +91,12 @@ namespace Poker
                     // Reset the pot
                     // Reset the deck
                     // Give the players new cards
+                    //giveCards();
+                    //GlobalVariables.player1.toggleTurn();
+                    GlobalVariables.player1.clearCards();
+                    GlobalVariables.player2.clearCards();
+                    deck.resetDeck();
                     giveCards();
-                    GlobalVariables.player1.toggleTurn();
 
                     int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
 
