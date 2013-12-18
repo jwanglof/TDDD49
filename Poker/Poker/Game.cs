@@ -67,18 +67,6 @@ namespace Poker
 
         private void btnDoneClick(object sender, RoutedEventArgs e)
         {
-            /*
-            Player currentPlayer;
-            if (GlobalVariables.player1.turn())
-                currentPlayer = GlobalVariables.player1;
-            else
-                currentPlayer = GlobalVariables.player2;
-
-            List<Card> cardsToThrow = currentPlayer.removeSelectedCards();
-            
-            deck.throwCards(cardsToThrow);
-            */
-
             turns += 1;
 
             if (turns == 2) //Change the selected cards, no toggle since its only 2 players at the momement every player will start a round every second time.
@@ -89,11 +77,6 @@ namespace Poker
                     Console.WriteLine("RESET EVERYTHING!!!!");
 
                     // Reset the pot
-                    // Reset the deck
-                    // Give the players new cards
-                    //giveCards();
-                    //
-
                     int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
 
                     // Add to the victorious players pot
@@ -114,12 +97,15 @@ namespace Poker
                     this.totalTurns = 1;
                     this.player1TotalBet = 0;
                     this.player2TotalBet = 0;
+                    this.pot = new Money();
 
                     GlobalVariables.player1.clearCards();
                     GlobalVariables.player2.clearCards();
                     deck.resetDeck();
                     giveCards();
+
                     GlobalVariables.player1.toggleTurn();
+                    GlobalVariables.player2.toggleTurn();
                 }
                 else
                 {
