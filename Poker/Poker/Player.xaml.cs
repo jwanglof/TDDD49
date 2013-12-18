@@ -51,6 +51,11 @@ namespace Poker
             }
         }
 
+        public List<Card> getCards()
+        {
+            return hand;
+        }
+
         public List<Card> removeSelectedCards()
         {
             List<Card> selectedCards = new List<Card>();
