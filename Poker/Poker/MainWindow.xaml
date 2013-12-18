@@ -17,5 +17,6 @@
             </Grid>
         </Canvas>
         <local:Money x:Name="pot" VerticalAlignment="Center" HorizontalAlignment="Center" ></local:Money>
+        <Button Click="saveState" VerticalAlignment="Center" HorizontalAlignment="Left">Save state</Button>
     </Grid>
 </Window>

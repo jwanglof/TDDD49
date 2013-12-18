@@ -31,5 +31,12 @@ namespace Poker
             Game game = new Game(pot);
             game.start();
         }
+
+        private void saveState(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("State is saved!");
+
+            using (Game)
+        }
     }
 }
