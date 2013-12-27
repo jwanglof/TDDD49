@@ -20,6 +20,7 @@ namespace Poker
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Game game;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +29,7 @@ namespace Poker
             GlobalVariables.player1 = player1;
             GlobalVariables.player2 = player2;
 
-            Game game = new Game(pot);
+            game = new Game(pot);
             game.start();
         }
 
@@ -47,34 +48,58 @@ namespace Poker
         {
             gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
 
-            using (var db = new StateContext())
+
+            /*using (var db = new StatesContext())
             {
-                String gameName = stateName.Text;
+                //try
+                //{
+                    String gameName = stateName.Text;
 
-                var state = new State { stateTitle = gameName };
-                db.States.Add(state);
-                db.SaveChanges();
+                    var state = new States() { 
+                        stateTitle = gameName, 
+                        player1Cards = GlobalVariables.player1.getCards(),
+                        player2Cards = GlobalVariables.player2.getCards(),
+                        player1Money = GlobalVariables.player1.money.getMoney(),
+                        player2Money = GlobalVariables.player2.money.getMoney()
+                    };
 
-                Console.WriteLine("State is saved as " + gameName + "!");
-            }
+                    /*
+                    state.player1Cards = GlobalVariables.player1.getCards();
+                    state.player2Cards = GlobalVariables.player2.getCards();
+
+                    state.player1Money = GlobalVariables.player1.money.getMoney();
+                    state.player2Money = GlobalVariables.player2.money.getMoney();
+                    
+                    
+                    // Does not work....
+                    db.States.Add(state);
+                    
+                    db.SaveChanges();
+
+                    Console.WriteLine("State is saved as: " + gameName + "!");
+                }
+                catch (NotSupportedException)
+                {
+                    Console.WriteLine("Something went wrong!");
+                }*/
+            }*/
         }
 
         public void loadState(object sender, RoutedEventArgs e)
         {
-            using (var db = new StateContext())
+            /*using (var db = new StatesContext())
             {
-                var query = from b in db.States
-                            orderby b.stateTitle
-                            select b;
+                var query = 
 
+                Console.WriteLine("Saved states:");
                 foreach (var item in query)
                 {
-                    Console.WriteLine(item.id);
-                    Console.WriteLine(item.stateTitle);
+                    //Console.WriteLine("ID: "+ item.id +". Title: "+ item.stateTitle);
+                    Console.WriteLine(item);
                 }
 
-                var state = db.States.Find(1);
-            }
+                var state = db.Game.Find(1);
+            }*/
         }
     }
 }

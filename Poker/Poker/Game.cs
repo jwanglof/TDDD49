@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Poker
 {
-    class Game
+    public class Game
     {
         private Deck deck = new Deck();
         private Rules rules = new Rules();
