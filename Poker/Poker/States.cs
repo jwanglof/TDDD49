@@ -22,8 +22,4 @@ namespace Poker
     {
         public string gameName;
     }
-
-    public class DoCreate(StorageDevice device) {
-
-    }
 }

@@ -81,7 +81,7 @@ namespace Poker
                 catch (NotSupportedException)
                 {
                     Console.WriteLine("Something went wrong!");
-                }*/
+                }
             }*/
         }
 
