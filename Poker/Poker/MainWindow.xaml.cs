@@ -47,6 +47,7 @@ namespace Poker
 
         public void onClickLoad(object sender, RoutedEventArgs e)
         {
+            // Toggle visibility on the board's button
             if (loadGamePopup.Visibility == System.Windows.Visibility.Visible)
                 loadGamePopup.Visibility = System.Windows.Visibility.Hidden;
             else
@@ -60,35 +61,17 @@ namespace Poker
             IQueryable<Games> query = from entry in db.Games select entry;
 
             listOfGames = query.ToList();
+            Console.WriteLine(listOfGames.Count);
             foreach (Games game in listOfGames)
             {
                 gameNames.Items.Add(game.Id);
-                //Console.WriteLine(game.name + " -- " + game.Id);
             }
-
-            /*
-            databaseEntities db = new databaseEntities();
-            IQueryable<test> custQuery =
-                from entry in db.test
-                select entry;
-            List<test> x = custQuery.ToList();
-            foreach (test t in x)
-                Console.WriteLine(t.Id + "  " + t.name + "   " + t.score);
-             * */
-            //delete this contact
-            /*
-            databaseEntities db = new databaseEntities();
-            test con = db.test.SingleOrDefault(p => p.Id == 1);
-            Console.WriteLine("score = " + con.score);
-            db.test.Remove(con);
-            db.SaveChanges();*/
         }
 
         void loadGame_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(listOfGames);
-            Console.WriteLine((int)gameNames.SelectedItem-1);
-            Console.WriteLine(listOfGames[(int)gameNames.SelectedItem - 1]);
+            game = new Game(pot);
+            game.parseGameEntity(listOfGames[(int)gameNames.SelectedItem - 1]);
         }
 
         void closeLoadWindow_Click(object sender, RoutedEventArgs e)
