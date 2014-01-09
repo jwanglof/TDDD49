@@ -64,14 +64,25 @@ namespace Poker
             Console.WriteLine(listOfGames.Count);
             foreach (Games game in listOfGames)
             {
-                gameNames.Items.Add(game.Id);
+                gameNames.Items.Add(game.name);
             }
         }
 
         void loadGame_Click(object sender, RoutedEventArgs e)
         {
-            game = new Game(pot);
-            game.parseGameEntity(listOfGames[(int)gameNames.SelectedItem - 1]);
+            string gameName = (string) gameNames.SelectedItem;
+
+            DatabaseEntities db2 = new DatabaseEntities();
+
+            IQueryable<Games> query = from entry in db2.Games where entry.name == gameName select entry;
+            List<Games> loadedGame = query.ToList();
+            foreach (Games g in loadedGame)
+            {
+                Console.WriteLine(g.name);
+                //game.parseGameEntity(listOfGames[g.Id]);
+            }
+
+            loadGamePopup.Visibility = System.Windows.Visibility.Hidden;
         }
 
         void closeLoadWindow_Click(object sender, RoutedEventArgs e)
