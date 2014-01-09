@@ -19,7 +19,7 @@ namespace Poker
     {
         public int number = 0;
         private int suit = 1;
-        public bool cardSelected = false;
+        private bool cardSelected = false;
         public Card()
         {
             InitializeComponent();
@@ -51,6 +51,10 @@ namespace Poker
         {
             return suit;
         }
+        public Boolean isSelected()
+        {
+            return cardSelected;
+        }
  
         private void onMouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -59,6 +63,11 @@ namespace Poker
                 Canvas.SetBottom((Image)sender, 10);
             else
                 Canvas.SetBottom((Image)sender, 0);
+        }
+
+        public void Reset()
+        {
+            cardSelected = false;
         }
     }
 }

@@ -33,10 +33,35 @@ namespace Poker
             game.start();
         }
 
-        public void saveState(object sender, RoutedEventArgs e)
+        public void onClickSave(object sender, RoutedEventArgs e)
         {
-            gameNamePopup.Visibility = System.Windows.Visibility.Visible;
+            /*test test = new test();
+            test.name = "test";
+            test.score = 1337;
+            databaseEntities db = new databaseEntities();
+            db.test.Add(test);
+            db.SaveChanges();
+            */
+            //gameNamePopup.Visibility = System.Windows.Visibility.Visible;
             
+        }
+
+        public void onClickLoad(object sender, RoutedEventArgs e)
+        {
+            databaseEntities db = new databaseEntities();
+            IQueryable<test> custQuery =
+                from entry in db.test
+                select entry;
+            List<test> x = custQuery.ToList();
+            foreach (test t in x)
+                Console.WriteLine(t.Id + "  " + t.name + "   " + t.score);
+            //delete this contact
+            /*
+            databaseEntities db = new databaseEntities();
+            test con = db.test.SingleOrDefault(p => p.Id == 1);
+            Console.WriteLine("score = " + con.score);
+            db.test.Remove(con);
+            db.SaveChanges();*/
         }
 
         public void stateCloseWindow(object sender, RoutedEventArgs e)

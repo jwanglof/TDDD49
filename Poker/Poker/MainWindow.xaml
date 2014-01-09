@@ -17,8 +17,8 @@
             </Grid>
         </Canvas>
         <local:Money x:Name="pot" VerticalAlignment="Center" HorizontalAlignment="Center"></local:Money>
-        <Button Click="saveState" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,147,0,146" Width="85" Height="30">Save game</Button>
-        <Button Click="loadState" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,182,0,112" Width="85" Height="30">Load game</Button>
+        <Button Click="onClickSave" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,147,0,146" Width="85" Height="30">Save game</Button>
+        <Button Click="onClickLoad" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,182,0,112" Width="85" Height="30">Load game</Button>
 
         <Grid x:Name="gameNamePopup" Visibility="Hidden" Width="200" Height="80" Background="White">
             <Grid.RowDefinitions>
@@ -28,8 +28,6 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Enter your game's name:</Label>
             <TextBox Grid.Row="1" Name="stateName"></TextBox>
-            <Button Click="stateSaveGame" Content="Save" Grid.Row="2" Width="100" HorizontalAlignment="Left" />
-            <Button Click="stateCloseWindow" Content="Close" Grid.Row="2" Width="100" HorizontalAlignment="Right" />
         </Grid>
     </Grid>
 </Window>

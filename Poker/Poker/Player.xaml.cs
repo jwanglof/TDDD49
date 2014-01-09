@@ -59,10 +59,9 @@ namespace Poker
         public List<Card> removeSelectedCards()
         {
             List<Card> selectedCards = new List<Card>();
-            List<Card> selected = hand.Where(card => card.cardSelected).ToList();
+            List<Card> selected = hand.Where(card => card.isSelected()).ToList();
             foreach (Card card in selected)
             {
-                card.cardSelected = false;
                 selectedCards.Add(card);
                 hand.Remove(card);
             }
@@ -77,6 +76,7 @@ namespace Poker
 
         public void clearCards()
         {
+            hand.ForEach(card => card.Reset());
             cardGrid.Children.Clear();
             hand.Clear();
         }

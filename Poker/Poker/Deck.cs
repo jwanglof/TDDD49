@@ -65,6 +65,7 @@ namespace Poker
 
         public void throwCards(List<Card> cards)
         {
+            cards.ForEach(card => card.Reset());
             thrownCards.AddRange(cards);
         }
     }
