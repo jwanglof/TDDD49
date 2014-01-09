@@ -27,6 +27,7 @@ namespace Poker
             foreach(ThrownCards entity in thrownCardsEntities)
                 cardsToThrow.Add(findCard(entity.suit, entity.value));
 
+            resetDeck();
             throwCards(cardsToThrow);
         }
 

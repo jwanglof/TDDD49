@@ -48,6 +48,17 @@ namespace Poker
             entity.myTurn = myTurn;
             entity.prevBet = prevBet;
 
+            if (myTurn)
+            {
+                turnGrid.Visibility = System.Windows.Visibility.Visible;
+                betGrid.IsEnabled = true;
+            }
+            else
+            {
+                turnGrid.Visibility = System.Windows.Visibility.Hidden;
+                betGrid.IsEnabled = false;
+            }
+
             return entity;
         }
 
@@ -55,6 +66,7 @@ namespace Poker
         {
             myTurn = entity.myTurn;
             prevBet = entity.prevBet;
+            money.setMoney(entity.money);
             this.hand = hand;
             updateHand();
         }
