@@ -78,8 +78,7 @@ namespace Poker
             List<Games> loadedGame = query.ToList();
             foreach (Games g in loadedGame)
             {
-                Console.WriteLine(g.name);
-                //game.parseGameEntity(listOfGames[g.Id]);
+                game.parseGameEntity(listOfGames[g.Id-1]);
             }
 
             loadGamePopup.Visibility = System.Windows.Visibility.Hidden;
