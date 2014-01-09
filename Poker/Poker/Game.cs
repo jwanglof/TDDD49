@@ -107,9 +107,9 @@ namespace Poker
         {
             turns += 1;
 
-            if (turns == 2) //Change the selected cards, no toggle since its only 2 players at the momement every player will start a round every second time.
+            if (turns >= 2) //Change the selected cards, no toggle since its only 2 players at the momement every player will start a round every second time.
             {
-                if (this.totalTurns == 3)
+                if (this.totalTurns >= 3)
                 {
                     // Game finished, reset everything and crown a winner!
                     Console.WriteLine("RESET EVERYTHING!!!!");

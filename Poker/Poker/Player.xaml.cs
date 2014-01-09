@@ -54,11 +54,7 @@ namespace Poker
         public void parsePlayerEntity(Players entity, List<Card> hand)
         {
             myTurn = entity.myTurn;
-            prevBet = entity.prevBet;
-            money.setMoney(entity.money);
-            this.hand = hand;
-            updateHand();
-
+            cardGrid.IsEnabled = myTurn;
             if (myTurn)
             {
                 turnGrid.Visibility = System.Windows.Visibility.Visible;
@@ -69,6 +65,14 @@ namespace Poker
                 turnGrid.Visibility = System.Windows.Visibility.Hidden;
                 betGrid.IsEnabled = false;
             }
+
+            prevBet = entity.prevBet;
+            betCounter.Text = prevBet.ToString();
+            money.setMoney(entity.money);
+            this.hand = hand;
+            updateHand();
+
+
         }
 
         public void addCard(Card card)

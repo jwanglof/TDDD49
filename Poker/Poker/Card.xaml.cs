@@ -68,6 +68,7 @@ namespace Poker
         public void Reset()
         {
             cardSelected = false;
+            Canvas.SetBottom(image, 0);
         }
     }
 }
