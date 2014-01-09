@@ -58,5 +58,10 @@ namespace Poker
         {
             return this.money;
         }
+
+        public void setMoney(int money)
+        {
+            this.money = money;
+        }
     }
 }

@@ -28,14 +28,6 @@ namespace Poker
             InitializeComponent();
         }
 
-        public Player(Players entity)
-        {
-            InitializeComponent();
-
-            myTurn = entity.myTurn;
-            prevBet = entity.prevBet;
-        }
-
         public Players getEntity()
         {
             
@@ -57,6 +49,14 @@ namespace Poker
             entity.prevBet = prevBet;
 
             return entity;
+        }
+
+        public void parsePlayerEntity(Players entity, List<Card> hand)
+        {
+            myTurn = entity.myTurn;
+            prevBet = entity.prevBet;
+            this.hand = hand;
+            updateHand();
         }
 
         public void addCard(Card card)
