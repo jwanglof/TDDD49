@@ -130,13 +130,11 @@ namespace Poker
                     // Subtract from the losing players pot
                     if (winner == 1)
                     {
-                        Console.WriteLine("Player 1 won!");
                         GlobalVariables.player1.addToMoney(pot.getMoney());
                         GlobalVariables.player2.subtractFromMoney(this.player2TotalBet);
                     }
                     else if (winner == 2)
                     {
-                        Console.WriteLine("Player 2 won!");
                         GlobalVariables.player2.addToMoney(pot.getMoney());
                         GlobalVariables.player1.subtractFromMoney(this.player1TotalBet);
                     }
