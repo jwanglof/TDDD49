@@ -53,6 +53,7 @@ namespace Poker
                 DatabaseEntities db = new DatabaseEntities();
                 db.Games.Add(gameEntity);
                 db.SaveChanges();
+
                 Console.WriteLine("Save done!");
 
                 IQueryable<Games> custQuery =
