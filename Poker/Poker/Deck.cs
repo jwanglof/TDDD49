@@ -46,6 +46,7 @@ namespace Poker
             return cards;
         }
 
+        // Reset the entire deck 
         public void resetDeck()
         {
             cardsInDeck.Clear();
@@ -70,9 +71,11 @@ namespace Poker
             }
             cardsInDeck = shuffled;
         }
+
+        // The player's first hand
         public Card takeCard()
         {
-            //If deck i empty, add thrown cards and shuffle
+            //If deck is empty, add thrown cards and shuffle
             if (cardsInDeck.Count == 0)
             {
                 cardsInDeck = thrownCards;
@@ -84,7 +87,6 @@ namespace Poker
 
             return card;
         }
-
         public List<Card> takeCards(int amount)
         {
             List<Card> cards = new List<Card>();
@@ -93,6 +95,8 @@ namespace Poker
             return cards;
         }
 
+        // Removes the givven cards in cards from the deck
+        // And add it to thrownCards
         public void throwCards(List<Card> cards)
         {
             cards.ForEach(card => card.Reset());
@@ -107,6 +111,7 @@ namespace Poker
             return null;
         }
 
+        // Returns all the thrown cards as an entity
         public List<ThrownCards> getTrownCardsEntities()
         {
             List<ThrownCards> entities = new List<ThrownCards>();

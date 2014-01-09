@@ -145,6 +145,7 @@ namespace Poker
             }
         }
 
+        // Add 1 to the player's bet
         private void addBet(object sender, RoutedEventArgs e)
         {
             // Need to check so that the player can't bet mote then his current cash
@@ -156,6 +157,8 @@ namespace Poker
 
             btnDone.Content = "Raise";
         }
+
+        // Add 10 to the player's bet
         private void addBet10(object sender, RoutedEventArgs e)
         {
             // Need to check so that the player can't bet more then his current cash
@@ -173,6 +176,7 @@ namespace Poker
             btnDone.Content = "Raise";
         }
 
+        // Subtract 1 from the player's bet
         private void subtrBet(object sender, RoutedEventArgs e)
         {
             if (this.prevBet > 0)
@@ -181,6 +185,7 @@ namespace Poker
                 betCounter.Text = this.prevBet.ToString();
                 btnDone.Content = "Raise";
             }
+            // If the player tries to lower his bet below 0 it won't go below it
             else
             {
                 this.prevBet = 0;
@@ -189,14 +194,18 @@ namespace Poker
             }
         }
 
+        // Subtract 10 from the player's bet
         private void subtrBet10(object sender, RoutedEventArgs e)
         {
+            // If the player has more than 10 money it will subtract 10 from the bet
             if (this.prevBet > 10)
             {
                 this.prevBet -= 10;
                 betCounter.Text = this.prevBet.ToString();
                 btnDone.Content = "Raise";
             }
+            // If the player tries to lower his bet below 0 it won't go below it
+            // or if the player has less than 10 money it will go down to 0
             else
             {
                 this.prevBet = 0;
@@ -205,6 +214,7 @@ namespace Poker
             }
         }
 
+        // Reset the bet counter
         private void resetBet(object sender, RoutedEventArgs e)
         {
             this.prevBet = 0;
@@ -219,6 +229,7 @@ namespace Poker
             btnDone.Content = "All in";
         }
 
+        // 
         public int getPrevBet()
         {
             return this.prevBet;

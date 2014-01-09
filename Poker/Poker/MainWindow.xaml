@@ -17,6 +17,7 @@
             </Grid>
         </Canvas>
         <local:Money x:Name="pot" VerticalAlignment="Center" HorizontalAlignment="Center"></local:Money>
+        <TextBox Name="textMessage" VerticalAlignment="Center" Height="50" Width="160" Visibility="Hidden" FontWeight="Bold" FontSize="22" Opacity="0.7" HorizontalAlignment="Center"></TextBox>
         <Button Click="onClickSave" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,147,0,146" Width="85" Height="30">Save game</Button>
 
         <Grid x:Name="gameNamePopup" Visibility="Hidden" Width="200" Height="80" Background="White">

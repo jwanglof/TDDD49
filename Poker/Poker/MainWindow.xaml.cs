@@ -26,10 +26,12 @@ namespace Poker
         {
             InitializeComponent();
 
+            // Initialize the global variables
             GlobalVariables.initGlobalVariables();
             GlobalVariables.player1 = player1;
             GlobalVariables.player2 = player2;
 
+            // Start a new game
             game = new Game(pot);
             game.start();
         }
@@ -53,16 +55,17 @@ namespace Poker
             else
                 loadGamePopup.Visibility = System.Windows.Visibility.Visible;
 
+            // Clear the window where all the saved games are shown
             gameNames.Items.Clear();
+
+            // Add button click events
             loadGame.Click += loadGame_Click;
             closeLoadWindow.Click += closeLoadWindow_Click;
 
+            // Load the saved games and populate the gameNames-ListBox
             DatabaseEntities db = new DatabaseEntities();
-
             IQueryable<Games> query = from entry in db.Games select entry;
-
             listOfGames = query.ToList();
-            Console.WriteLine(listOfGames.Count);
             foreach (Games game in listOfGames)
             {
                 gameNames.Items.Add(game.name);
@@ -71,11 +74,11 @@ namespace Poker
 
         void loadGame_Click(object sender, RoutedEventArgs e)
         {
+            // Get the selected game name
             string gameName = (string) gameNames.SelectedItem;
 
-            DatabaseEntities db2 = new DatabaseEntities();
-
-            IQueryable<Games> query = from entry in db2.Games where entry.name == gameName select entry;
+            DatabaseEntities load_db = new DatabaseEntities();
+            IQueryable<Games> query = from entry in load_db.Games where entry.name == gameName select entry;
             List<Games> loadedGame = query.ToList();
             foreach (Games g in loadedGame)
             {
@@ -97,22 +100,23 @@ namespace Poker
 
         private void saveGame_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("before");
+            // Get the entity
             Games gameEntity = game.getEntity();
 
+            // Set the game name to whatever the user named it
             gameEntity.name = stateName.Text;
 
             DatabaseEntities db = new DatabaseEntities();
             db.Games.Add(gameEntity);
             db.SaveChanges();
-            Console.WriteLine("Save done!");
 
-            /*IQueryable<Games> custQuery =
-                from entry in db.Games
-                select entry;
-            List<Games> x = custQuery.ToList();
-            foreach (Games t in x)
-                Console.WriteLine(t.Id + "  " + t.name);*/
+            /*textMessage.Text = "Saved game!";
+            textMessage.Visibility = System.Windows.Visibility.Visible;
+
+            aTimer = new System.Timers.Timer(1000);
+            aTimer.Elapsed += aTimer_Elapsed;
+            aTimer.AutoReset = false;
+            aTimer.Enabled = true;*/
 
             gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
             stateName.Text = "";
