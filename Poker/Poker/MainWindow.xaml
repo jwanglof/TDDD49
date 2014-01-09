@@ -27,7 +27,7 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Enter your game's name:</Label>
             <TextBox Grid.Row="1" Name="stateName"></TextBox>
-            <Button Grid.Row="2" Name="saveGame" Width="100" Margin="0,0,100,0" >Save</Button>
+            <Button Grid.Row="2" Name="saveGame" Width="100" Margin="0,0,100,0" Click="saveGame_Click" >Save</Button>
             <Button Grid.Row="2" Name="closeSaveWindow" Width="100" Margin="100,0,0,0">Cancel</Button>
         </Grid>
 
@@ -40,7 +40,8 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Select game:</Label>
             <ListBox Grid.Row="1" Name="gameNames"></ListBox>
-            <Button Grid.Row="2" Name="closeLoadWindow">Close</Button>
+            <Button Grid.Row="2" Name="loadGame" Width="100" Margin="0,0,100,0" >Load</Button>
+            <Button Grid.Row="2" Name="closeLoadWindow" Width="100" Margin="100,0,0,0">Close</Button>
         </Grid>
     </Grid>
 </Window>

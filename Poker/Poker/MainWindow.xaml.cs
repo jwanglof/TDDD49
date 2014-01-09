@@ -21,6 +21,7 @@ namespace Poker
     public partial class MainWindow : Window
     {
         private Game game;
+        private List<Games> listOfGames;
         public MainWindow()
         {
             InitializeComponent();
@@ -42,29 +43,6 @@ namespace Poker
                 gameNamePopup.Visibility = System.Windows.Visibility.Visible;
 
             closeSaveWindow.Click += closeSaveWindow_Click;
-
-            saveGame.Click += (asdd, args) =>
-            {
-                Console.WriteLine("before");
-                Games gameEntity = game.getEntity();
-
-                gameEntity.name = stateName.Text;
-
-                DatabaseEntities db = new DatabaseEntities();
-                db.Games.Add(gameEntity);
-                db.SaveChanges();
-                Console.WriteLine("Save done!");
-
-                IQueryable<Games> custQuery =
-                    from entry in db.Games
-                    select entry;
-                List<Games> x = custQuery.ToList();
-                foreach (Games t in x)
-                    Console.WriteLine(t.Id + "  " + t.name );
-
-                gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
-                stateName.Text = "";
-            };
         }
 
         public void onClickLoad(object sender, RoutedEventArgs e)
@@ -74,16 +52,17 @@ namespace Poker
             else
                 loadGamePopup.Visibility = System.Windows.Visibility.Visible;
 
+            loadGame.Click += loadGame_Click;
             closeLoadWindow.Click += closeLoadWindow_Click;
 
             DatabaseEntities db = new DatabaseEntities();
 
             IQueryable<Games> query = from entry in db.Games select entry;
 
-            List<Games> x = query.ToList();
-            foreach (Games game in x)
+            listOfGames = query.ToList();
+            foreach (Games game in listOfGames)
             {
-                gameNames.Items.Add(game.name);
+                gameNames.Items.Add(game.Id);
                 //Console.WriteLine(game.name + " -- " + game.Id);
             }
 
@@ -105,6 +84,13 @@ namespace Poker
             db.SaveChanges();*/
         }
 
+        void loadGame_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine(listOfGames);
+            Console.WriteLine((int)gameNames.SelectedItem-1);
+            Console.WriteLine(listOfGames[(int)gameNames.SelectedItem - 1]);
+        }
+
         void closeLoadWindow_Click(object sender, RoutedEventArgs e)
         {
             loadGamePopup.Visibility = System.Windows.Visibility.Hidden;
@@ -115,67 +101,27 @@ namespace Poker
             gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
         }
 
-        public void stateCloseWindow(object sender, RoutedEventArgs e)
+        private void saveGame_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine("before");
+            Games gameEntity = game.getEntity();
+
+            gameEntity.name = stateName.Text;
+
+            DatabaseEntities db = new DatabaseEntities();
+            db.Games.Add(gameEntity);
+            db.SaveChanges();
+            Console.WriteLine("Save done!");
+
+            /*IQueryable<Games> custQuery =
+                from entry in db.Games
+                select entry;
+            List<Games> x = custQuery.ToList();
+            foreach (Games t in x)
+                Console.WriteLine(t.Id + "  " + t.name);*/
+
             gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
-        }
-
-        public void stateSaveGame(object sender, RoutedEventArgs e)
-        {
-            gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
-
-
-            /*using (var db = new StatesContext())
-            {
-                //try
-                //{
-                    String gameName = stateName.Text;
-
-                    var state = new States() { 
-                        stateTitle = gameName, 
-                        player1Cards = GlobalVariables.player1.getCards(),
-                        player2Cards = GlobalVariables.player2.getCards(),
-                        player1Money = GlobalVariables.player1.money.getMoney(),
-                        player2Money = GlobalVariables.player2.money.getMoney()
-                    };
-
-                    /*
-                    state.player1Cards = GlobalVariables.player1.getCards();
-                    state.player2Cards = GlobalVariables.player2.getCards();
-
-                    state.player1Money = GlobalVariables.player1.money.getMoney();
-                    state.player2Money = GlobalVariables.player2.money.getMoney();
-                    
-                    
-                    // Does not work....
-                    db.States.Add(state);
-                    
-                    db.SaveChanges();
-
-                    Console.WriteLine("State is saved as: " + gameName + "!");
-                }
-                catch (NotSupportedException)
-                {
-                    Console.WriteLine("Something went wrong!");
-                }
-            }*/
-        }
-
-        public void loadState(object sender, RoutedEventArgs e)
-        {
-            /*using (var db = new StatesContext())
-            {
-                var query = 
-
-                Console.WriteLine("Saved states:");
-                foreach (var item in query)
-                {
-                    //Console.WriteLine("ID: "+ item.id +". Title: "+ item.stateTitle);
-                    Console.WriteLine(item);
-                }
-
-                var state = db.Game.Find(1);
-            }*/
+            stateName.Text = "";
         }
     }
 }
