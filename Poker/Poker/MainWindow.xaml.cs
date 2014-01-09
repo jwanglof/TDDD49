@@ -51,6 +51,22 @@ namespace Poker
 
         public void onClickLoad(object sender, RoutedEventArgs e)
         {
+            if (loadGamePopup.Visibility == System.Windows.Visibility.Visible)
+                loadGamePopup.Visibility = System.Windows.Visibility.Hidden;
+            else
+                loadGamePopup.Visibility = System.Windows.Visibility.Visible;
+
+            DatabaseEntities db = new DatabaseEntities();
+
+            IQueryable<Games> query = from entry in db.Games select entry;
+
+            List<Games> x = query.ToList();
+            loadGame.DataContext = x;
+            foreach (Games game in x)
+            {
+                Console.WriteLine(game.name + " -- " + game.pool);
+            }
+
             /*
             databaseEntities db = new databaseEntities();
             IQueryable<test> custQuery =
