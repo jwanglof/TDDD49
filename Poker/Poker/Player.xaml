@@ -11,6 +11,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        
         <local:Money x:Name="money" Grid.Column="0" VerticalAlignment="Center"></local:Money>
        
         <Grid x:Name="betGrid" Grid.Column="1" IsEnabled="False" Margin="0,36,0,0">
@@ -32,11 +33,13 @@
                 <ColumnDefinition Width="70"/>
             </Grid.ColumnDefinitions>
         </Grid>
+        
         <Grid x:Name="turnGrid" Grid.Column="3" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            
             <Label Grid.Row="0">Your turn!</Label>
             <Button x:Name="btnDone" Content="Call" Grid.Row="1" />
         </Grid>

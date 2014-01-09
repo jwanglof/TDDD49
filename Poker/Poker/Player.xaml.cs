@@ -23,14 +23,17 @@ namespace Poker
         private List<Card> hand = new List<Card>();
         private bool myTurn = false;
         private int prevBet = 0;
+
         public Player()
         {
             InitializeComponent();
         }
 
+        /*
+        * Returns an entity of the object
+        */
         public Players getEntity()
         {
-            
             Players entity = new Players();
 
             entity.card1_suit = hand[0].getSuit();
@@ -51,14 +54,14 @@ namespace Poker
             return entity;
         }
 
+        /*
+         * Modifies this object according the the entity properties
+         */ 
         public void parsePlayerEntity(Players entity, List<Card> hand)
         {
+            //Load turn
             myTurn = entity.myTurn;
-            prevBet = entity.prevBet;
-            money.setMoney(entity.money);
-            this.hand = hand;
-            updateHand();
-
+            cardGrid.IsEnabled = myTurn;
             if (myTurn)
             {
                 turnGrid.Visibility = System.Windows.Visibility.Visible;
@@ -69,21 +72,31 @@ namespace Poker
                 turnGrid.Visibility = System.Windows.Visibility.Hidden;
                 betGrid.IsEnabled = false;
             }
+
+            //Load bet
+            prevBet = entity.prevBet;
+            betCounter.Text = prevBet.ToString();
+            money.setMoney(entity.money);
+
+            //Load cards
+            this.hand = hand;
+            updateHand();
         }
 
         public void addCard(Card card)
         {
             hand.Add(card);
-            Console.WriteLine("added card!");       
         }
 
         public void addCards(List<Card> cards)
         {
             hand.AddRange(cards);
             updateHand();
-            Console.WriteLine("added " + cards.Count + " cards!");
         }
         
+        /*
+         * Updates the GUI with the current hand
+         */ 
         public void updateHand()
         {
             cardGrid.Children.Clear();
@@ -114,7 +127,6 @@ namespace Poker
         public void throwCard(Card card)
         {
             hand.Remove(card);
-            Console.WriteLine("removed card!");
         }
 
         public void clearCards()

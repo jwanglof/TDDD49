@@ -20,10 +20,7 @@ namespace Poker
         public int number = 0;
         private int suit = 1;
         private bool cardSelected = false;
-        public Card()
-        {
-            InitializeComponent();
-        }
+
         public Card(int number, int suit)
         {
             InitializeComponent();
@@ -31,18 +28,11 @@ namespace Poker
             this.number = number;
             this.suit = suit;
 
+            //Load image
             string imagePath = "DeckOfCards/"+GlobalVariables.toCardSuit(suit)+GlobalVariables.toCardValue(number)+".png";
             image.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
         }   
 
-        //Only for testcases
-        public Card(int number, int suit, bool test)
-        {
-            InitializeComponent();
-
-            this.number = number;
-            this.suit = suit;
-        }
         public int getNumber()
         {
             return number;
@@ -68,6 +58,7 @@ namespace Poker
         public void Reset()
         {
             cardSelected = false;
+            Canvas.SetBottom(image, 0);
         }
     }
 }

@@ -8,9 +8,7 @@
     <Grid >
         <Canvas>
             <Rectangle x:Name="content" Fill="White" Stroke="Black" Height="70" Width="50" ></Rectangle>
-            <Image x:Name="image"  Height="70" Width="50" Source="/DeckOfcards/c1.png" Canvas.Bottom="0" MouseUp="onMouseUp"> </Image>
-            <!--<Label x:Name="lblNumber" Content="0" Canvas.Left="0"></Label>
-            <Label x:Name="lblSuit" Content="0" Canvas.Right="0"></Label>-->
+            <Image x:Name="image"  Height="70" Width="50" Source="/DeckOfcards/c1.png" Canvas.Bottom="0" MouseUp="onMouseUp"></Image>
         </Canvas>
     </Grid>
 </UserControl>

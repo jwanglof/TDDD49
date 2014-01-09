@@ -13,29 +13,38 @@ namespace Poker
     {
         private Deck deck = new Deck();
         private Rules rules = new Rules();
+
         private Money pot;
         private int startMoney = 200;
-        private int turns = 0;
-        private int totalTurns = 1;
-
         private int player1TotalBet = 0;
         private int player2TotalBet = 0;
+
+        private int turns = 0; //Turns of all players, resets at 2 as we only got 2 players
+        private int totalTurns = 1; //Turns of each player
+
         public Game(Money pot)
         {
             this.pot = pot;
 
-            GlobalVariables.player1.MouseUp += playerMouseUp; //Bra att ha kanske för kommunikation med spelar click men ändå tillgång till Game klassen
             GlobalVariables.player1.btnDone.Click += btnDoneClick;
             GlobalVariables.player2.btnDone.Click += btnDoneClick;
         }
 
+        /*
+         * Returns an entity of the object
+         */
         public Games getEntity()
         {
             Games entity = new Games();
-            entity.pool = pot.getMoney();
+
+            //Save turn
             entity.totalTurns = totalTurns;
             entity.turns = turns;
 
+            //Save pool
+            entity.pool = pot.getMoney();
+
+            //Save players
             Players player1Entity = GlobalVariables.player1.getEntity();
             player1Entity.totalBet = player1TotalBet;
             entity.Players.Add(player1Entity);
@@ -44,17 +53,26 @@ namespace Poker
             player2Entity.totalBet = player2TotalBet;
             entity.Players.Add(player2Entity);
 
+            //Save thrown cards
             foreach(ThrownCards cardEntity in deck.getTrownCardsEntities())
                 entity.ThrownCards.Add(cardEntity);
 
             return entity;
         }
 
+        /*
+         * Modifies this object according the the entity properties
+         */ 
         public void parseGameEntity(Games entity)
         {
-            List<ThrownCards> thrownCardsEntities = entity.ThrownCards.ToList();
-            deck.parseThrownCardEntities(thrownCardsEntities);
+            //Load turn
+            turns = entity.turns;
+            totalTurns = entity.totalTurns;
 
+            //Load pool
+            pot.setMoney(entity.pool);
+
+            //Load players
             List<Players> playerEntities = entity.Players.ToList();
             GlobalVariables.player1.parsePlayerEntity(playerEntities[0], deck.getPlayerEntityCards(playerEntities[0]));
             GlobalVariables.player2.parsePlayerEntity(playerEntities[1], deck.getPlayerEntityCards(playerEntities[1]));
@@ -62,9 +80,9 @@ namespace Poker
             player1TotalBet = playerEntities[0].totalBet;
             player2TotalBet = playerEntities[1].totalBet;
 
-            pot.setMoney(entity.pool);
-            turns = entity.turns;
-            totalTurns = entity.totalTurns;
+            //Load thrown cards
+            List<ThrownCards> thrownCardsEntities = entity.ThrownCards.ToList();
+            deck.parseThrownCardEntities(thrownCardsEntities);
         }
 
         public void start()
@@ -80,6 +98,9 @@ namespace Poker
             GlobalVariables.player2.money.add(startMoney);
         }
 
+        /*
+         * Deal cards to the players
+         */
         private void giveCards()
         {
             int cardsToGive = 5;
@@ -92,29 +113,17 @@ namespace Poker
             GlobalVariables.player2.updateHand();     
         }
 
-        //Not used, saved for possible later usage
-        private void playerMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            /*int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
-            Console.WriteLine("Winner is player" + winner);
-            GlobalVariables.player1.clearCards();
-            GlobalVariables.player2.clearCards();
-            deck.resetDeck();
-            giveCards();*/
-        }
-
         private void btnDoneClick(object sender, RoutedEventArgs e)
         {
             turns += 1;
 
-            if (turns == 2) //Change the selected cards, no toggle since its only 2 players at the momement every player will start a round every second time.
+            //Change the selected cards, no toggle since its only 2 players at the momement every player will start a round every second time.
+            if (turns >= 2) 
             {
-                if (this.totalTurns == 3)
+                //After 3 turns the round is done
+                if (this.totalTurns >= 3)
                 {
-                    // Game finished, reset everything and crown a winner!
-                    Console.WriteLine("RESET EVERYTHING!!!!");
-
-                    // Reset the pot
+                    // Check for winner
                     int winner = rules.checkBestHand(GlobalVariables.player1.getCards(), GlobalVariables.player2.getCards());
 
                     // Add to the victorious players pot
@@ -132,6 +141,7 @@ namespace Poker
                         GlobalVariables.player1.subtractFromMoney(this.player1TotalBet);
                     }
 
+                    //Reset for new round
                     this.totalTurns = 1;
                     this.player1TotalBet = 0;
                     this.player2TotalBet = 0;
@@ -150,14 +160,16 @@ namespace Poker
                     turns = 0;
                     this.totalTurns += 1;
 
+                    //Throw and get new cards
                     List<Card> cardsToThrow = GlobalVariables.player1.removeSelectedCards();
                     GlobalVariables.player1.addCards(deck.takeCards(cardsToThrow.Count));
                     deck.throwCards(cardsToThrow);
-                    
+
                     cardsToThrow = GlobalVariables.player2.removeSelectedCards();
                     GlobalVariables.player2.addCards(deck.takeCards(cardsToThrow.Count));
                     deck.throwCards(cardsToThrow);
 
+                    //Add bets to the pot
                     pot.add(GlobalVariables.player1.getPrevBet() + GlobalVariables.player2.getPrevBet());
 
                     GlobalVariables.player1.subtractFromMoney(GlobalVariables.player1.getPrevBet());
@@ -176,6 +188,7 @@ namespace Poker
             }
             else
             {
+                //Toggle turn
                 GlobalVariables.player1.toggleTurn();
                 GlobalVariables.player2.toggleTurn();
             }   

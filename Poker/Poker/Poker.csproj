@@ -107,8 +107,6 @@
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Rules.cs" />
-    <Compile Include="States.cs" />
-    <Compile Include="StatesContext.cs" />
     <Compile Include="ThrownCards.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
