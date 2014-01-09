@@ -20,6 +20,12 @@ namespace Poker
 
             resetDeck();
         }
+
+        public void parseEntities(List<ThrownCards> thrownCardsEntities, Players player1Entity, Players player2Entity)
+        {
+
+        }
+
         public void resetDeck()
         {
             cardsInDeck.Clear();

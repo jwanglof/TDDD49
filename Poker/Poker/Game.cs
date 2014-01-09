@@ -36,6 +36,17 @@ namespace Poker
             entity.totalTurns = totalTurns;
             entity.turns = turns;
 
+            Players player1Entity = GlobalVariables.player1.getEntity();
+            player1Entity.totalBet = player1TotalBet;
+            entity.Players.Add(player1Entity);
+
+            Players player2Entity = GlobalVariables.player2.getEntity();
+            player2Entity.totalBet = player2TotalBet;
+            entity.Players.Add(player2Entity);
+
+            foreach(ThrownCards cardEntity in deck.getTrownCardsEntities())
+                entity.ThrownCards.Add(cardEntity);
+
             return entity;
         }
 

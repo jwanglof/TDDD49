@@ -35,9 +35,21 @@ namespace Poker
 
         public void onClickSave(object sender, RoutedEventArgs e)
         {
-            Games games = new Games();
-            games.name = "testGame";
+            Console.WriteLine("before");
+            Games gameEntity = game.getEntity();
+            gameEntity.name = "testGame";
 
+            DatabaseEntities db = new DatabaseEntities();
+            db.Games.Add(gameEntity);
+            db.SaveChanges();
+            Console.WriteLine("Save done!");
+
+            IQueryable<Games> custQuery =
+                from entry in db.Games
+                select entry;
+            List<Games> x = custQuery.ToList();
+            foreach (Games t in x)
+                Console.WriteLine(t.Id + "  " + t.name );
             /*test test = new test();
             test.name = "test";
             test.score = 1337;

@@ -28,6 +28,14 @@ namespace Poker
             InitializeComponent();
         }
 
+        public Player(Players entity)
+        {
+            InitializeComponent();
+
+            myTurn = entity.myTurn;
+            prevBet = entity.prevBet;
+        }
+
         public Players getEntity()
         {
             
