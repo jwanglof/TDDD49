@@ -27,16 +27,20 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Enter your game's name:</Label>
             <TextBox Grid.Row="1" Name="stateName"></TextBox>
+            <Button Grid.Row="2" Name="saveGame" Width="100" Margin="0,0,100,0" >Save</Button>
+            <Button Grid.Row="2" Name="closeSaveWindow" Width="100" Margin="100,0,0,0">Cancel</Button>
         </Grid>
 
         <Button Click="onClickLoad" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,182,0,112" Width="85" Height="30">Load game</Button>
-        <Grid x:Name="loadGamePopup" Visibility="Hidden" Width="200" Height="150" Background="White">
+        <Grid x:Name="loadGamePopup" Visibility="Hidden" Width="200" Height="170" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="118"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Select game:</Label>
-            <ListBox Grid.Row="1" Name="loadGame"></ListBox>
+            <ListBox Grid.Row="1" Name="gameNames"></ListBox>
+            <Button Grid.Row="2" Name="closeLoadWindow">Close</Button>
         </Grid>
     </Grid>
 </Window>

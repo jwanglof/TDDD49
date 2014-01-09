@@ -35,30 +35,36 @@ namespace Poker
 
         public void onClickSave(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("before");
-            Games gameEntity = game.getEntity();
-            gameEntity.name = "testGame";
+            // Toggle visibility on the board's button
+            if (gameNamePopup.Visibility == System.Windows.Visibility.Visible)
+                gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
+            else
+                gameNamePopup.Visibility = System.Windows.Visibility.Visible;
 
-            DatabaseEntities db = new DatabaseEntities();
-            db.Games.Add(gameEntity);
-            db.SaveChanges();
-            Console.WriteLine("Save done!");
+            closeSaveWindow.Click += closeSaveWindow_Click;
 
-            IQueryable<Games> custQuery =
-                from entry in db.Games
-                select entry;
-            List<Games> x = custQuery.ToList();
-            foreach (Games t in x)
-                Console.WriteLine(t.Id + "  " + t.name );
-            /*test test = new test();
-            test.name = "test";
-            test.score = 1337;
-            databaseEntities db = new databaseEntities();
-            db.test.Add(test);
-            db.SaveChanges();
-            */
-            //gameNamePopup.Visibility = System.Windows.Visibility.Visible;
-            
+            saveGame.Click += (asdd, args) =>
+            {
+                Console.WriteLine("before");
+                Games gameEntity = game.getEntity();
+
+                gameEntity.name = stateName.Text;
+
+                DatabaseEntities db = new DatabaseEntities();
+                db.Games.Add(gameEntity);
+                db.SaveChanges();
+                Console.WriteLine("Save done!");
+
+                IQueryable<Games> custQuery =
+                    from entry in db.Games
+                    select entry;
+                List<Games> x = custQuery.ToList();
+                foreach (Games t in x)
+                    Console.WriteLine(t.Id + "  " + t.name );
+
+                gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
+                stateName.Text = "";
+            };
         }
 
         public void onClickLoad(object sender, RoutedEventArgs e)
@@ -68,15 +74,17 @@ namespace Poker
             else
                 loadGamePopup.Visibility = System.Windows.Visibility.Visible;
 
+            closeLoadWindow.Click += closeLoadWindow_Click;
+
             DatabaseEntities db = new DatabaseEntities();
 
             IQueryable<Games> query = from entry in db.Games select entry;
 
             List<Games> x = query.ToList();
-            loadGame.DataContext = x;
             foreach (Games game in x)
             {
-                Console.WriteLine(game.name + " -- " + game.pool);
+                gameNames.Items.Add(game.name);
+                //Console.WriteLine(game.name + " -- " + game.Id);
             }
 
             /*
@@ -95,6 +103,16 @@ namespace Poker
             Console.WriteLine("score = " + con.score);
             db.test.Remove(con);
             db.SaveChanges();*/
+        }
+
+        void closeLoadWindow_Click(object sender, RoutedEventArgs e)
+        {
+            loadGamePopup.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        void closeSaveWindow_Click(object sender, RoutedEventArgs e)
+        {
+            gameNamePopup.Visibility = System.Windows.Visibility.Hidden;
         }
 
         public void stateCloseWindow(object sender, RoutedEventArgs e)
