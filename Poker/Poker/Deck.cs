@@ -21,6 +21,9 @@ namespace Poker
             resetDeck();
         }
 
+        /*
+         * Resets deck and throw the cards specified by the entities 
+         */ 
         public void parseThrownCardEntities(List<ThrownCards> thrownCardsEntities)
         {
             List<Card> cardsToThrow = new List<Card>();
@@ -31,6 +34,9 @@ namespace Poker
             throwCards(cardsToThrow);
         }
 
+        /*
+         * Returns the cards specified by the playerEntity
+         */ 
         public List<Card> getPlayerEntityCards(Players playerEntity)
         {
             List<Card> cards = new List<Card>();
@@ -87,6 +93,7 @@ namespace Poker
 
             return card;
         }
+
         public List<Card> takeCards(int amount)
         {
             List<Card> cards = new List<Card>();
@@ -95,8 +102,7 @@ namespace Poker
             return cards;
         }
 
-        // Removes the givven cards in cards from the deck
-        // And add it to thrownCards
+        //Adds the given cards to thrownCards list
         public void throwCards(List<Card> cards)
         {
             cards.ForEach(card => card.Reset());
@@ -111,7 +117,7 @@ namespace Poker
             return null;
         }
 
-        // Returns all the thrown cards as an entity
+        // Returns all the thrown cards as a List of entities
         public List<ThrownCards> getTrownCardsEntities()
         {
             List<ThrownCards> entities = new List<ThrownCards>();
