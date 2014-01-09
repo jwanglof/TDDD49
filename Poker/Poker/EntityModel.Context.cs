@@ -13,10 +13,10 @@ namespace Poker
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class databaseEntities : DbContext
+    public partial class DatabaseEntities : DbContext
     {
-        public databaseEntities()
-            : base("name=databaseEntities")
+        public DatabaseEntities()
+            : base("name=DatabaseEntities")
         {
         }
     
@@ -25,6 +25,8 @@ namespace Poker
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<test> test { get; set; }
+        public virtual DbSet<Games> Games { get; set; }
+        public virtual DbSet<Players> Players { get; set; }
+        public virtual DbSet<ThrownCards> ThrownCards { get; set; }
     }
 }

@@ -28,6 +28,29 @@ namespace Poker
             InitializeComponent();
         }
 
+        public Players getEntity()
+        {
+            
+            Players entity = new Players();
+
+            entity.card1_suit = hand[0].getSuit();
+            entity.card1_value = hand[0].getNumber();
+            entity.card2_suit = hand[1].getSuit();
+            entity.card2_value = hand[1].getNumber();
+            entity.card3_suit = hand[2].getSuit();
+            entity.card3_value = hand[2].getNumber();
+            entity.card4_suit = hand[3].getSuit();
+            entity.card4_value = hand[3].getNumber();
+            entity.card5_suit = hand[4].getSuit();
+            entity.card5_value = hand[4].getNumber();
+
+            entity.money = money.getMoney();
+            entity.myTurn = myTurn;
+            entity.prevBet = prevBet;
+
+            return entity;
+        }
+
         public void addCard(Card card)
         {
             hand.Add(card);

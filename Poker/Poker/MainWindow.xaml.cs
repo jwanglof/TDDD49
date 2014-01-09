@@ -35,6 +35,9 @@ namespace Poker
 
         public void onClickSave(object sender, RoutedEventArgs e)
         {
+            Games games = new Games();
+            games.name = "testGame";
+
             /*test test = new test();
             test.name = "test";
             test.score = 1337;
@@ -48,6 +51,7 @@ namespace Poker
 
         public void onClickLoad(object sender, RoutedEventArgs e)
         {
+            /*
             databaseEntities db = new databaseEntities();
             IQueryable<test> custQuery =
                 from entry in db.test
@@ -55,6 +59,7 @@ namespace Poker
             List<test> x = custQuery.ToList();
             foreach (test t in x)
                 Console.WriteLine(t.Id + "  " + t.name + "   " + t.score);
+             * */
             //delete this contact
             /*
             databaseEntities db = new databaseEntities();

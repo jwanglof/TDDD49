@@ -11,13 +11,14 @@ namespace Poker
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations.Schema;
     
-    public partial class test
+    public partial class ThrownCards
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string name { get; set; }
-        public int score { get; set; }
+        public int suit { get; set; }
+        public int value { get; set; }
+        public int game { get; set; }
+    
+        public virtual Games Games { get; set; }
     }
 }

@@ -68,5 +68,21 @@ namespace Poker
             cards.ForEach(card => card.Reset());
             thrownCards.AddRange(cards);
         }
+
+        public List<ThrownCards> getTrownCardsEntities()
+        {
+            List<ThrownCards> entities = new List<ThrownCards>();
+            
+            foreach(Card card in thrownCards)
+            {
+                ThrownCards entity = new ThrownCards();
+                entity.suit = card.getSuit();
+                entity.value = card.getNumber();
+
+                entities.Add(entity);
+            }
+
+            return entities;
+        }
     }
 }

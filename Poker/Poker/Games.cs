@@ -12,25 +12,21 @@ namespace Poker
     using System;
     using System.Collections.Generic;
     
-    public partial class Cards
+    public partial class Games
     {
-        public Cards()
+        public Games()
         {
             this.Players = new HashSet<Players>();
-            this.Players1 = new HashSet<Players>();
-            this.Players2 = new HashSet<Players>();
-            this.Players3 = new HashSet<Players>();
-            this.Players4 = new HashSet<Players>();
+            this.ThrownCards = new HashSet<ThrownCards>();
         }
     
         public int Id { get; set; }
-        public int suit { get; set; }
-        public int value { get; set; }
+        public string name { get; set; }
+        public int pool { get; set; }
+        public int turns { get; set; }
+        public int totalTurns { get; set; }
     
         public virtual ICollection<Players> Players { get; set; }
-        public virtual ICollection<Players> Players1 { get; set; }
-        public virtual ICollection<Players> Players2 { get; set; }
-        public virtual ICollection<Players> Players3 { get; set; }
-        public virtual ICollection<Players> Players4 { get; set; }
+        public virtual ICollection<ThrownCards> ThrownCards { get; set; }
     }
 }

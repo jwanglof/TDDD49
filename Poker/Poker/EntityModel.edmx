@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pool" Type="int" Nullable="false" />
+          <Property Name="turns" Type="int" Nullable="false" />
+          <Property Name="totalTurns" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="card1_suit" Type="int" Nullable="false" />
+          <Property Name="card1_value" Type="int" Nullable="false" />
+          <Property Name="card2_suit" Type="int" Nullable="false" />
+          <Property Name="card2_value" Type="int" Nullable="false" />
+          <Property Name="card3_suit" Type="int" Nullable="false" />
+          <Property Name="card3_value" Type="int" Nullable="false" />
+          <Property Name="card4_suit" Type="int" Nullable="false" />
+          <Property Name="card4_value" Type="int" Nullable="false" />
+          <Property Name="card5_suit" Type="int" Nullable="false" />
+          <Property Name="card5_value" Type="int" Nullable="false" />
+          <Property Name="money" Type="int" Nullable="false" />
+          <Property Name="prevBet" Type="int" Nullable="false" />
+          <Property Name="myTurn" Type="bit" Nullable="false" />
+          <Property Name="totalBet" Type="int" Nullable="false" />
+          <Property Name="game" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThrownCards">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="suit" Type="int" Nullable="false" />
+          <Property Name="value" Type="int" Nullable="false" />
+          <Property Name="game" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="game">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="gameid">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="ThrownCards" Type="Self.ThrownCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThrownCards">
+              <PropertyRef Name="game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Players" EntityType="Self.Players" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ThrownCards" EntityType="Self.ThrownCards" Schema="dbo" p3:Type="Tables" xmlns:p3="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <AssociationSet Name="game" Association="Self.game">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="gameid" Association="Self.gameid">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="ThrownCards" EntitySet="ThrownCards" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Games">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pool" Type="Int32" Nullable="false" />
+          <Property Name="turns" Type="Int32" Nullable="false" />
+          <Property Name="totalTurns" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Players" Relationship="Self.game" FromRole="Games" ToRole="Players" />
+          <NavigationProperty Name="ThrownCards" Relationship="Self.gameid" FromRole="Games" ToRole="ThrownCards" />
+        </EntityType>
+        <EntityType Name="Players">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="card1_suit" Type="Int32" Nullable="false" />
+          <Property Name="card1_value" Type="Int32" Nullable="false" />
+          <Property Name="card2_suit" Type="Int32" Nullable="false" />
+          <Property Name="card2_value" Type="Int32" Nullable="false" />
+          <Property Name="card3_suit" Type="Int32" Nullable="false" />
+          <Property Name="card3_value" Type="Int32" Nullable="false" />
+          <Property Name="card4_suit" Type="Int32" Nullable="false" />
+          <Property Name="card4_value" Type="Int32" Nullable="false" />
+          <Property Name="card5_suit" Type="Int32" Nullable="false" />
+          <Property Name="card5_value" Type="Int32" Nullable="false" />
+          <Property Name="money" Type="Int32" Nullable="false" />
+          <Property Name="prevBet" Type="Int32" Nullable="false" />
+          <Property Name="myTurn" Type="Boolean" Nullable="false" />
+          <Property Name="totalBet" Type="Int32" Nullable="false" />
+          <Property Name="game" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="Self.game" FromRole="Players" ToRole="Games" />
+        </EntityType>
+        <EntityType Name="ThrownCards">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="suit" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Int32" Nullable="false" />
+          <Property Name="game" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Games" Relationship="Self.gameid" FromRole="ThrownCards" ToRole="Games" />
+        </EntityType>
+        <Association Name="game">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="Players" Type="Self.Players" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Players">
+              <PropertyRef Name="game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="gameid">
+          <End Role="Games" Type="Self.Games" Multiplicity="1" />
+          <End Role="ThrownCards" Type="Self.ThrownCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Games">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThrownCards">
+              <PropertyRef Name="game" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Games" EntityType="Self.Games" />
+          <EntitySet Name="Players" EntityType="Self.Players" />
+          <EntitySet Name="ThrownCards" EntityType="Self.ThrownCards" />
+          <AssociationSet Name="game" Association="Self.game">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="Players" EntitySet="Players" />
+          </AssociationSet>
+          <AssociationSet Name="gameid" Association="Self.gameid">
+            <End Role="Games" EntitySet="Games" />
+            <End Role="ThrownCards" EntitySet="ThrownCards" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="DatabaseModel.Games">
+              <MappingFragment StoreEntitySet="Games">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="pool" ColumnName="pool" />
+                <ScalarProperty Name="turns" ColumnName="turns" />
+                <ScalarProperty Name="totalTurns" ColumnName="totalTurns" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="DatabaseModel.Players">
+              <MappingFragment StoreEntitySet="Players">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="card1_suit" ColumnName="card1_suit" />
+                <ScalarProperty Name="card1_value" ColumnName="card1_value" />
+                <ScalarProperty Name="card2_suit" ColumnName="card2_suit" />
+                <ScalarProperty Name="card2_value" ColumnName="card2_value" />
+                <ScalarProperty Name="card3_suit" ColumnName="card3_suit" />
+                <ScalarProperty Name="card3_value" ColumnName="card3_value" />
+                <ScalarProperty Name="card4_suit" ColumnName="card4_suit" />
+                <ScalarProperty Name="card4_value" ColumnName="card4_value" />
+                <ScalarProperty Name="card5_suit" ColumnName="card5_suit" />
+                <ScalarProperty Name="card5_value" ColumnName="card5_value" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="prevBet" ColumnName="prevBet" />
+                <ScalarProperty Name="myTurn" ColumnName="myTurn" />
+                <ScalarProperty Name="totalBet" ColumnName="totalBet" />
+                <ScalarProperty Name="game" ColumnName="game" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThrownCards">
+            <EntityTypeMapping TypeName="DatabaseModel.ThrownCards">
+              <MappingFragment StoreEntitySet="ThrownCards">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="suit" ColumnName="suit" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="game" ColumnName="game" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

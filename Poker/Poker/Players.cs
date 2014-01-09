@@ -15,19 +15,22 @@ namespace Poker
     public partial class Players
     {
         public int Id { get; set; }
-        public int card1 { get; set; }
-        public int card2 { get; set; }
-        public int card3 { get; set; }
-        public int card4 { get; set; }
-        public int card5 { get; set; }
+        public int card1_suit { get; set; }
+        public int card1_value { get; set; }
+        public int card2_suit { get; set; }
+        public int card2_value { get; set; }
+        public int card3_suit { get; set; }
+        public int card3_value { get; set; }
+        public int card4_suit { get; set; }
+        public int card4_value { get; set; }
+        public int card5_suit { get; set; }
+        public int card5_value { get; set; }
         public int money { get; set; }
         public int prevBet { get; set; }
         public bool myTurn { get; set; }
+        public int totalBet { get; set; }
+        public int game { get; set; }
     
-        public virtual Cards Cards { get; set; }
-        public virtual Cards Cards1 { get; set; }
-        public virtual Cards Cards2 { get; set; }
-        public virtual Cards Cards3 { get; set; }
-        public virtual Cards Cards4 { get; set; }
+        public virtual Games Games { get; set; }
     }
 }

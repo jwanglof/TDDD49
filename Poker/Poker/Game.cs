@@ -29,6 +29,16 @@ namespace Poker
             GlobalVariables.player2.btnDone.Click += btnDoneClick;
         }
 
+        public Games getEntity()
+        {
+            Games entity = new Games();
+            entity.pool = pot.getMoney();
+            entity.totalTurns = totalTurns;
+            entity.turns = turns;
+
+            return entity;
+        }
+
         public void start()
         {
             giveStartMoney();
