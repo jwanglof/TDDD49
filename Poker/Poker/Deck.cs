@@ -64,6 +64,7 @@ namespace Poker
 
             shuffleCards();
         }
+
         private void shuffleCards()
         {
             List<Card> shuffled = new List<Card>();
@@ -78,7 +79,7 @@ namespace Poker
             cardsInDeck = shuffled;
         }
 
-        // The player's first hand
+        //Returns and removes the card on the top of the deck
         public Card takeCard()
         {
             //If deck is empty, add thrown cards and shuffle
@@ -94,6 +95,7 @@ namespace Poker
             return card;
         }
 
+        //Returns and removes cards on the top of the deck
         public List<Card> takeCards(int amount)
         {
             List<Card> cards = new List<Card>();
@@ -133,6 +135,5 @@ namespace Poker
 
             return entities;
         }
-
     }
 }
