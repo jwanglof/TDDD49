@@ -18,7 +18,6 @@
         </Canvas>
         <local:Money x:Name="pot" VerticalAlignment="Center" HorizontalAlignment="Center"></local:Money>
         <Button Click="onClickSave" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,147,0,146" Width="85" Height="30">Save game</Button>
-        <Button Click="onClickLoad" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,182,0,112" Width="85" Height="30">Load game</Button>
 
         <Grid x:Name="gameNamePopup" Visibility="Hidden" Width="200" Height="80" Background="White">
             <Grid.RowDefinitions>
@@ -28,6 +27,16 @@
             </Grid.RowDefinitions>
             <Label Grid.Row="0">Enter your game's name:</Label>
             <TextBox Grid.Row="1" Name="stateName"></TextBox>
+        </Grid>
+
+        <Button Click="onClickLoad" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,182,0,112" Width="85" Height="30">Load game</Button>
+        <Grid x:Name="loadGamePopup" Visibility="Hidden" Width="200" Height="150" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="120"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0">Select game:</Label>
+            <ListBox Grid.Row="1" Name="loadGame"></ListBox>
         </Grid>
     </Grid>
 </Window>
