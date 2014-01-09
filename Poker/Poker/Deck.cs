@@ -50,7 +50,11 @@ namespace Poker
         {
             cardsInDeck.Clear();
             for (int i = 0; i < allCards.Count; i++)
+            {
+                allCards[i].Reset();
                 cardsInDeck.Add(allCards[i]);
+            }
+
             shuffleCards();
         }
         private void shuffleCards()

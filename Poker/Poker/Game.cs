@@ -60,12 +60,11 @@ namespace Poker
             GlobalVariables.player2.parsePlayerEntity(playerEntities[1], deck.getPlayerEntityCards(playerEntities[1]));
 
             player1TotalBet = playerEntities[0].totalBet;
-            player1TotalBet = playerEntities[1].totalBet;
+            player2TotalBet = playerEntities[1].totalBet;
 
             pot.setMoney(entity.pool);
             turns = entity.turns;
             totalTurns = entity.totalTurns;
-
         }
 
         public void start()
