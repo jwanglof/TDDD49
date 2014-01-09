@@ -91,12 +91,13 @@ namespace Poker
             return score;
         }
 
+        /*
+         * Prints score to console, for DEBUG ONLY
+         */ 
         public void printScore(Dictionary<String, int> score)
         {
-            Console.WriteLine("#### BEGIN PRINT SCORE ######");
             foreach (KeyValuePair<String, int> pair in score)
                 Console.WriteLine(pair.Key + " " + pair.Value);
-            Console.WriteLine("#### END PRINT SCORE ######");
         }
 
         public int checkRoyalFlush(List<Card> cards)
