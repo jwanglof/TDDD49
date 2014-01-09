@@ -124,21 +124,11 @@ namespace Poker
             return selectedCards;
         }
 
-        public void throwCard(Card card)
-        {
-            hand.Remove(card);
-        }
-
         public void clearCards()
         {
             hand.ForEach(card => card.Reset());
             cardGrid.Children.Clear();
             hand.Clear();
-        }
-
-        public bool turn()
-        {
-            return myTurn;
         }
 
         public void toggleTurn()
@@ -241,7 +231,7 @@ namespace Poker
             btnDone.Content = "All in";
         }
 
-        // 
+        // Get previous bet so it can be added to the pot and subtracted from the player's money
         public int getPrevBet()
         {
             return this.prevBet;
