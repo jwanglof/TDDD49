@@ -21,9 +21,28 @@ namespace Poker
             resetDeck();
         }
 
-        public void parseEntities(List<ThrownCards> thrownCardsEntities, Players player1Entity, Players player2Entity)
+        public void parseThrownCardEntities(List<ThrownCards> thrownCardsEntities)
         {
+            List<Card> cardsToThrow = new List<Card>();
+            foreach(ThrownCards entity in thrownCardsEntities)
+                cardsToThrow.Add(findCard(entity.suit, entity.value));
 
+            throwCards(cardsToThrow);
+        }
+
+        public List<Card> getPlayerEntityCards(Players playerEntity)
+        {
+            List<Card> cards = new List<Card>();
+            cards.Add(findCard(playerEntity.card1_suit, playerEntity.card1_value));
+            cards.Add(findCard(playerEntity.card2_suit, playerEntity.card2_value));
+            cards.Add(findCard(playerEntity.card3_suit, playerEntity.card3_value));
+            cards.Add(findCard(playerEntity.card4_suit, playerEntity.card4_value));
+            cards.Add(findCard(playerEntity.card5_suit, playerEntity.card5_value));
+
+            foreach (Card card in cards)
+                cardsInDeck.Remove(card);
+
+            return cards;
         }
 
         public void resetDeck()
@@ -75,6 +94,14 @@ namespace Poker
             thrownCards.AddRange(cards);
         }
 
+        private Card findCard(int suit, int value)
+        {
+            foreach (Card card in allCards)
+                if (card.getSuit() == suit && card.getNumber() == value)
+                    return card;
+            return null;
+        }
+
         public List<ThrownCards> getTrownCardsEntities()
         {
             List<ThrownCards> entities = new List<ThrownCards>();
@@ -90,5 +117,6 @@ namespace Poker
 
             return entities;
         }
+
     }
 }

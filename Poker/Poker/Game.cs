@@ -50,6 +50,24 @@ namespace Poker
             return entity;
         }
 
+        public void parseGameEntity(Games entity)
+        {
+            List<ThrownCards> thrownCardsEntities = entity.ThrownCards.ToList();
+            deck.parseThrownCardEntities(thrownCardsEntities);
+
+            List<Players> playerEntities = entity.Players.ToList();
+            GlobalVariables.player1.parsePlayerEntity(playerEntities[0], deck.getPlayerEntityCards(playerEntities[0]));
+            GlobalVariables.player2.parsePlayerEntity(playerEntities[1], deck.getPlayerEntityCards(playerEntities[1]));
+
+            player1TotalBet = playerEntities[0].totalBet;
+            player1TotalBet = playerEntities[1].totalBet;
+
+            pot.setMoney(entity.pool);
+            turns = entity.turns;
+            totalTurns = entity.totalTurns;
+
+        }
+
         public void start()
         {
             giveStartMoney();
