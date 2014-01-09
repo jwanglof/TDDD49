@@ -46,6 +46,8 @@ namespace Poker
             return cardSelected;
         }
  
+        // Move the card up or down
+        // When it is selected it is in up-position, otherwise in down-position
         private void onMouseUp(object sender, MouseButtonEventArgs e)
         {
             cardSelected = !cardSelected;
