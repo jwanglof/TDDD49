@@ -53,6 +53,7 @@ namespace Poker
             else
                 loadGamePopup.Visibility = System.Windows.Visibility.Visible;
 
+            gameNames.Items.Clear();
             loadGame.Click += loadGame_Click;
             closeLoadWindow.Click += closeLoadWindow_Click;
 
