@@ -140,10 +140,11 @@ namespace Poker
                     }
 
                     //Reset for new round
+                    this.turns = 0;
                     this.totalTurns = 1;
                     this.player1TotalBet = 0;
                     this.player2TotalBet = 0;
-                    this.pot = new Money();
+                    this.pot.setMoney(0);
 
                     GlobalVariables.player1.clearCards();
                     GlobalVariables.player2.clearCards();

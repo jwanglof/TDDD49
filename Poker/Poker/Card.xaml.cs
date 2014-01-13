@@ -33,6 +33,15 @@ namespace Poker
             image.Source = new BitmapImage(new Uri(imagePath, UriKind.Relative));
         }   
 
+        //Only for testcases
+        public Card(int number, int suit, bool test)
+        {
+            InitializeComponent();
+ 
+            this.number = number;
+            this.suit = suit;
+        }
+
         public int getNumber()
         {
             return number;
